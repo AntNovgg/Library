@@ -20,7 +20,7 @@ namespace CatalogService.Infrastructure.Configurations
             builder.Property(book => book.Author)
                 .IsRequired()
                 .HasMaxLength(250);
-            builder.Property(book => book.Genre)
+            builder.Property(book => book.BookGenre)
                 .IsRequired()
                 .HasMaxLength(250);
         }

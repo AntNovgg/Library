@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OrderingService.Domain.Aggregates
+namespace CatalogService.Domain.Seeds
 {
-    public class Order
-    {
-    }
+    public interface IAggregateRoot { }
+
 }

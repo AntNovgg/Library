@@ -25,10 +25,8 @@ namespace CatalogService.Application.Commands.UpdateBook
 
                 var entity = await _context.Books.FirstOrDefaultAsync(Book =>
                     Book.Id == request.Id, cancellationToken);
-                entity.Title = request.Title;
-                entity.Author = request.Author;
-                entity.Genre = request.Genre;
-                entity.IsAvailable = request.IsAvailable;
+                entity.BookUpdate(request.Title, request.Author, request.BookGenre, request.IsAvailable, request.BookCondition);
+                
 
 
                 

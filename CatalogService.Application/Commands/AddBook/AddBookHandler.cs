@@ -10,19 +10,19 @@ using System.Threading.Tasks;
 
 namespace CatalogService.Application.Commands.AddBook
 {
-    public class DeleteBookHandler : IRequestHandler<UpdateBookCommand, Guid>
+    public class AddBookHandler : IRequestHandler<AddBookCommand, Guid>
     {
         private readonly ICatalogServiceContext _context;
-        public DeleteBookHandler(ICatalogServiceContext context)
+        public AddBookHandler(ICatalogServiceContext context)
         {
             _context = context;
         }
-        public async Task<Guid> Handle(UpdateBookCommand request, CancellationToken cancellationToken)
+        public async Task<Guid> Handle(AddBookCommand request, CancellationToken cancellationToken)
         {
             try
             {
 
-                Book book = new Book(request.Title, request.Author, request.Genre, true, Book.Condition.Great);
+                Book book = new Book(request.Title, request.Author, request.BookGenre, true, request.BookCondition);
 
                 await _context.Books.AddAsync(book, cancellationToken);
                 await _context.SaveChangesAsync(cancellationToken);
@@ -31,7 +31,7 @@ namespace CatalogService.Application.Commands.AddBook
             }
             catch (Exception ex)
             {
-                var errorMessage = $"{DateTime.Now} - произошла ошибка при выполнении метода {nameof(DeleteBookHandler)} - {ex.Message}";
+                var errorMessage = $"{DateTime.Now} - произошла ошибка при выполнении метода {nameof(AddBookHandler)} - {ex.Message}";
                 throw new Exception(errorMessage);
             }
 

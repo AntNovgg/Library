@@ -18,7 +18,10 @@ namespace CatalogService.Infrastructure
 
         public CatalogServiceContext(DbContextOptions<CatalogServiceContext> options)
             : base(options) { }
-
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseNpgsql("Host=localhost; Port=5432; Username=postgres; Password=1; Database=Library");
+        }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new BookConfig());

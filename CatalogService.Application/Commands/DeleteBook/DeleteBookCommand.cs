@@ -11,7 +11,7 @@ namespace CatalogService.Application.Commands.DeleteBook
 {
     public class DeleteBookCommand : IRequest
     {
-        public Guid Id { get; private set; }
+        public Guid Id { get; set; }
 
     }
 }
