@@ -12,30 +12,30 @@ namespace OrderingService.Domain.Aggregates.OrderAggregate
     
     {
         public int RenterId { get; private set; }
-        public Renter Renter { get; }
-        public OrderStatus OrderStatus { get; private set; }
+        public Renter Renter { get; }        
         public DateTimeOffset OrderDate { get; private set; }
         public DateTimeOffset ReturnDate { get; private set; }
-        // DDD Patterns comment
-        // Using a private collection field, better for DDD Aggregate's encapsulation
-        // so OrderItems cannot be added from "outside the AggregateRoot" directly to the collection,
-        // but only through the method OrderAggregateRoot.AddOrderItem() which includes behavior.
-        private readonly List<OrderBook> _orderBooks;
+        public string BookTitle { get; private set; }
+        public string BookAuthor { get; private set; }
+        public OrderStatus OrderStatus { get; private set; }
+        public string Comment {  get; private set; } 
+        public bool IsReturned { get; private set; }
 
-        public IReadOnlyCollection<OrderBook> OrderBooks => _orderBooks.AsReadOnly();
-        protected Order()
+        public Order(int renterId,
+            DateTimeOffset orderDate,
+            DateTimeOffset returnDate,
+            string bookTitle,
+            string bookAuthor,
+            OrderStatus orderStatus,
+            bool isReturned)
         {
-            _orderBooks = new List<OrderBook>();
-            
-        }
-
-        public Order(DateTimeOffset returnDate, int renterId) : this()
-        {
-            RenterId = renterId;            
-            OrderStatus = OrderStatus.Active;            
+            RenterId = renterId;
+            OrderDate = orderDate;
             ReturnDate = returnDate;
-            OrderDate = DateTime.UtcNow;
-
+            BookTitle = bookTitle;
+            BookAuthor = bookAuthor;
+            OrderStatus = orderStatus;
+            IsReturned = isReturned;
         }
     }
 }
