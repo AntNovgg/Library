@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace OrderingService.Application.Common.Interfaces
 {
-    public interface ICatalogServiceContext
+    public interface IOrderingServiceContext
     {
         public DbSet<Order> Orders { get; set; }
         public DbSet<Renter> Renters { get; set; }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using OrderingService.Domain.Aggregates.OrderAggregate;
 using OrderingService.Domain.Aggregates.RenterAggregate;
 using OrderingService.Infrastructure.Configurations;
-
+using OrderingService.Application.Common.Interfaces;
 
 namespace OrderingService.Infrastructure
 {
