@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderingService.WebApi", "O
 		{4F7E6E65-0BD6-4617-8CBA-1B95763E6BC9} = {4F7E6E65-0BD6-4617-8CBA-1B95763E6BC9}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "Contracts\Contracts.csproj", "{F62BCA98-8A9B-4F8C-8839-8F6F35E20765}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,10 @@ Global
 		{EEA7CCCA-D2D8-4F94-B6F2-971A3D7EE2A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEA7CCCA-D2D8-4F94-B6F2-971A3D7EE2A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EEA7CCCA-D2D8-4F94-B6F2-971A3D7EE2A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F62BCA98-8A9B-4F8C-8839-8F6F35E20765}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F62BCA98-8A9B-4F8C-8839-8F6F35E20765}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F62BCA98-8A9B-4F8C-8839-8F6F35E20765}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F62BCA98-8A9B-4F8C-8839-8F6F35E20765}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

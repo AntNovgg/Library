@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddAutoMapper(config =>
 {
     config.AddProfile(new AssemblyMappingProfile(Assembly.GetExecutingAssembly()));
-    config.AddProfile(new AssemblyMappingProfile(typeof(ICatalogServiceContext).Assembly));
+    config.AddProfile(new AssemblyMappingProfile(typeof(IOrderingServiceContext).Assembly));
 });
 
 builder.Services.AddApplication();
