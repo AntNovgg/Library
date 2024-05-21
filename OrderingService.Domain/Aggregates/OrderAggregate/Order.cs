@@ -11,6 +11,15 @@ namespace OrderingService.Domain.Aggregates.OrderAggregate
     public class Order : Entity, IAggregateRoot
     
     {
+        //// DDD Patterns comment
+        //// Using a private collection field, better for DDD Aggregate's encapsulation
+        //// so OrderItems cannot be added from "outside the AggregateRoot" directly to the collection,
+        //// but only through the method OrderAggregateRoot.AddOrderItem() which includes behavior.
+        //private readonly List<int> _booksIds;
+        //public IReadOnlyCollection<int> BooksIds => _booksIds.AsReadOnly();
+
+
+        public int BookId { get; private set; }
         public int RenterId { get; private set; }
         public Renter Renter { get; }        
         public DateTimeOffset OrderDate { get; private set; }
@@ -21,21 +30,21 @@ namespace OrderingService.Domain.Aggregates.OrderAggregate
         public string Comment {  get; private set; } 
         public bool IsReturned { get; private set; }
 
-        public Order(int renterId,
+        public Order(int bookId,
+            int renterId,
             DateTimeOffset orderDate,
-            DateTimeOffset returnDate,
-            string bookTitle,
-            string bookAuthor,
-            OrderStatus orderStatus,
-            bool isReturned)
+            DateTimeOffset returnDate)
         {
+            BookId = bookId;
             RenterId = renterId;
             OrderDate = orderDate;
-            ReturnDate = returnDate;
-            BookTitle = bookTitle;
-            BookAuthor = bookAuthor;
-            OrderStatus = orderStatus;
-            IsReturned = isReturned;
+            ReturnDate = returnDate;            
+            OrderStatus = 0;
+            IsReturned = false;
+        }
+
+        public Order()
+        {
         }
     }
 }

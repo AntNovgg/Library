@@ -11,6 +11,7 @@ namespace OrderingService.Application.Commands.AddOrder
 {
     public class AddOrderCommand : IRequest<Guid>
     {
+        public int BookId { get; private set; }
         public int RenterId { get; private set; }
         public Renter Renter { get; }
         public DateTimeOffset OrderDate { get; private set; }

@@ -33,12 +33,10 @@ builder.Services.AddMassTransit(busConfigurator =>
 
     busConfigurator.UsingRabbitMq((context, configurator) =>
     {
-        configurator.Host(new Uri(builder.Configuration["MessageBroker:Host"]!), h =>
-        {
-            h.Username(builder.Configuration["MessageBroker:Username"]);
-            h.Password(builder.Configuration["MessageBroker:Password"]);
+        configurator.Host("localhost", "/", h => {
+            h.Username("guest");
+            h.Password("guest");
         });
-
         configurator.ConfigureEndpoints(context);
     });
 });

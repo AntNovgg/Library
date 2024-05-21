@@ -15,5 +15,6 @@ namespace OrderingService.Application.Common.Interfaces
         public DbSet<Renter> Renters { get; set; }
         void Migrate();
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
+        
     }
 }

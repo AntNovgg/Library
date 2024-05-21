@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="8.2.2" />
     <PackageReference Include="MediatR" Version="12.2.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.5" />
@@ -19,6 +20,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CatalogService.Domain\CatalogService.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Commands\ReserveBook\" />
   </ItemGroup>
 
 </Project>

@@ -1,25 +1,25 @@
-﻿using MassTransit;
-using MediatR;
+﻿using CatalogService.Application.Common.Interfaces;
+using Contracts;
+using MassTransit;
+using OrderingService.Application.Commands.AddOrder;
 using OrderingService.Application.Common.Interfaces;
-using OrderingService.Domain.Aggregates.OrderAggregate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
-namespace OrderingService.Application.Commands.AddOrder
+namespace Consumers
 {
-    public class AddOrderHandler : IRequestHandler<AddOrderCommand, Guid>
+    public class BookReservedConsumer : IConsumer<BookReservedEvent>
     {
         private readonly IOrderingServiceContext _context;
-        private readonly IPublishEndpoint _bus;
-        public AddOrderHandler(IOrderingServiceContext context, IBus bus)
+        public BookReservedConsumer(IOrderingServiceContext context)
         {
             _context = context;
-            _bus = bus;
         }
-        public async Task<Guid> Handle(AddOrderCommand request, CancellationToken cancellationToken)
+        public Task<Guid> Consume(ConsumeContext<BookReservedEvent> context) 
         {
             try
             {
@@ -30,8 +30,8 @@ namespace OrderingService.Application.Commands.AddOrder
 
                 await _context.Orders.AddAsync(order, cancellationToken);
                 await _context.SaveChangesAsync(cancellationToken);
-                
-               
+
+
                 return order.Id;
 
 
@@ -41,8 +41,6 @@ namespace OrderingService.Application.Commands.AddOrder
                 var errorMessage = $"{DateTime.Now} - произошла ошибка при выполнении метода {nameof(AddOrderHandler)} - {ex.Message}";
                 throw new Exception(errorMessage);
             }
-
-
         }
     }
 }

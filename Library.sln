@@ -8,6 +8,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CatalogService.Domain", "CatalogService.Domain\CatalogService.Domain.csproj", "{D9D4CD7D-807D-45F0-A602-E4C7BB76AE2C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CatalogService.Application", "CatalogService.Application\CatalogService.Application.csproj", "{E74FD372-FEC0-4ED9-B756-07CA0A66E46F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{68918A05-59B0-4CE7-B1EC-78332409BBA2} = {68918A05-59B0-4CE7-B1EC-78332409BBA2}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CatalogService.Infrastructure", "CatalogService.Infrastructure\CatalogService.Infrastructure.csproj", "{72C72A0D-3EFE-4019-8E0E-F815F84585E2}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -19,6 +22,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderingService.Domain", "OrderingService.Domain\OrderingService.Domain.csproj", "{11116E18-BB24-4F92-BA41-2FB17814B931}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderingService.Application", "OrderingService.Application\OrderingService.Application.csproj", "{145D7396-9006-4EEC-BFD5-752483CDA709}"
+	ProjectSection(ProjectDependencies) = postProject
+		{68918A05-59B0-4CE7-B1EC-78332409BBA2} = {68918A05-59B0-4CE7-B1EC-78332409BBA2}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderingService.Infrastructure", "OrderingService.Infrastructure\OrderingService.Infrastructure.csproj", "{4F7E6E65-0BD6-4617-8CBA-1B95763E6BC9}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -27,13 +33,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderingService.Infrastruct
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CatalogService.WebApi", "CatalogService.WebApi\CatalogService.WebApi.csproj", "{92022ADA-2F22-4DE1-81F5-2E6BEC902F76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderingService.WebApi", "OrderingService.WebApi\OrderingService.WebApi.csproj", "{EEA7CCCA-D2D8-4F94-B6F2-971A3D7EE2A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderingService.WebApi", "OrderingService.WebApi\OrderingService.WebApi.csproj", "{EEA7CCCA-D2D8-4F94-B6F2-971A3D7EE2A0}"
 	ProjectSection(ProjectDependencies) = postProject
 		{145D7396-9006-4EEC-BFD5-752483CDA709} = {145D7396-9006-4EEC-BFD5-752483CDA709}
 		{4F7E6E65-0BD6-4617-8CBA-1B95763E6BC9} = {4F7E6E65-0BD6-4617-8CBA-1B95763E6BC9}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "Contracts\Contracts.csproj", "{F62BCA98-8A9B-4F8C-8839-8F6F35E20765}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "Contracts\Contracts.csproj", "{68918A05-59B0-4CE7-B1EC-78332409BBA2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,10 +79,10 @@ Global
 		{EEA7CCCA-D2D8-4F94-B6F2-971A3D7EE2A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEA7CCCA-D2D8-4F94-B6F2-971A3D7EE2A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EEA7CCCA-D2D8-4F94-B6F2-971A3D7EE2A0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F62BCA98-8A9B-4F8C-8839-8F6F35E20765}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F62BCA98-8A9B-4F8C-8839-8F6F35E20765}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F62BCA98-8A9B-4F8C-8839-8F6F35E20765}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F62BCA98-8A9B-4F8C-8839-8F6F35E20765}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68918A05-59B0-4CE7-B1EC-78332409BBA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68918A05-59B0-4CE7-B1EC-78332409BBA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68918A05-59B0-4CE7-B1EC-78332409BBA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68918A05-59B0-4CE7-B1EC-78332409BBA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
