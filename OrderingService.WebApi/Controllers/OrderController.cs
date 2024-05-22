@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using OrderingService.Application.Commands.AddOrder;
+using OrderingService.WebApi.Models;
 
 namespace OrderingService.WebApi.Controllers
 {
@@ -21,11 +23,13 @@ namespace OrderingService.WebApi.Controllers
         /// Sample request:
         /// POST /order
         /// {
-        ///     title: "order title",
-        ///     author: "order author",
-        ///     genre: "order genre",
-        ///     ordercondition: "order condition",
-        ///     isavailable:  "order availability"
+        ///     bookId: "rentered book Id",
+        ///     renterId: "renter Id",
+        ///     orderdate: "order date",
+        ///     plannedReturnDate: "planned book return date",
+        ///     booktitle:  "rentered book title"
+        ///     bookauthor: "rentered book author"
+        ///     comment: any order comments
         /// }
         /// </remarks>
         /// <param name="addOrderModel">AddOrderModel object</param>

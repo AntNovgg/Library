@@ -25,11 +25,11 @@ namespace CatalogService.Application.Commands.UpdateBook
 
                 var entity = await _context.Books.FirstOrDefaultAsync(Book =>
                     Book.Id == request.Id, cancellationToken);
-                entity.BookUpdate(request.Title, request.Author, request.BookGenre, request.IsAvailable, request.BookCondition);
-                
-
-
-                
+                entity.BookUpdate(request.Title,
+                    request.Author,
+                    request.BookGenre,
+                    request.IsAvailable,
+                    request.BookCondition);
 
                 await _context.SaveChangesAsync(cancellationToken);
             }

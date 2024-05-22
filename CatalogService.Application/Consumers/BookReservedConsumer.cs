@@ -1,8 +1,7 @@
-﻿using Contracts;
+﻿using CatalogService.Application.Common.Interfaces;
+using Contracts;
 using MassTransit;
-using OrderingService.Application.Commands.AddOrder;
-using OrderingService.Application.Common.Interfaces;
-using OrderingService.Domain.Aggregates.OrderAggregate;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +9,12 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace OrderingService.Application.Consumers
+namespace CatalogService.Application.Consumers
 {
     public class BookReservedConsumer : IConsumer<BookReservedEvent>
     {
-        private readonly IOrderingServiceContext _context;
-        public BookReservedConsumer(IOrderingServiceContext context)
+        private readonly ICatalogServiceContext _context;
+        public BookReservedConsumer(ICatalogServiceContext context)
         {
             _context = context;
         }
@@ -23,9 +22,9 @@ namespace OrderingService.Application.Consumers
         {
             try
             {
-                Order order = new Order(context.Message.BookId);
-
-                await _context.Orders.AddAsync(order);
+                var entity = await _context.Books.FirstOrDefaultAsync(Book =>
+                    Book.Id == context.Message.bookId);
+                entity.BookReserved();
                 await _context.SaveChangesAsync(default(CancellationToken));
             }
             catch (Exception ex)
@@ -35,6 +34,8 @@ namespace OrderingService.Application.Consumers
             }
         }
 
-        
+
+    }
+    {
     }
 }

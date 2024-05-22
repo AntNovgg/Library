@@ -33,17 +33,19 @@ namespace OrderingService.Domain.Aggregates.OrderAggregate
         public Order(int bookId,
             int renterId,
             DateTimeOffset orderDate,
-            DateTimeOffset plannedReturnDate,
-            DateTimeOffset actualReturnDate)
+            DateTimeOffset plannedReturnDate,           
+            string bookTitle,
+            string bookAuthor,
+            string comment)
         {
             BookId = bookId;
             RenterId = renterId;
             OrderDate = orderDate;
-            PlannedReturnDate = plannedReturnDate;
-            ActualReturnDate = actualReturnDate;
-            
+            PlannedReturnDate = plannedReturnDate;   
+            BookTitle = bookTitle;
+            BookAuthor = bookAuthor;
             OrderStatus = 0;
-           
+            Comment = comment;           
         }
 
         public Order()

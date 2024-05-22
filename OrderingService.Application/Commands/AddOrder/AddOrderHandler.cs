@@ -1,4 +1,6 @@
-﻿using MassTransit;
+﻿using Contracts;
+using MassTransit;
+using MassTransit.Transports;
 using MediatR;
 using OrderingService.Application.Common.Interfaces;
 using OrderingService.Domain.Aggregates.OrderAggregate;
@@ -13,11 +15,11 @@ namespace OrderingService.Application.Commands.AddOrder
     public class AddOrderHandler : IRequestHandler<AddOrderCommand, Guid>
     {
         private readonly IOrderingServiceContext _context;
-        private readonly IPublishEndpoint _bus;
-        public AddOrderHandler(IOrderingServiceContext context, IBus bus)
+        private readonly IPublishEndpoint _publishEndpoint;
+        public AddOrderHandler(IOrderingServiceContext context, IPublishEndpoint publishEndpoint)
         {
             _context = context;
-            _bus = bus;
+            _publishEndpoint = publishEndpoint;
         }
         public async Task<Guid> Handle(AddOrderCommand request, CancellationToken cancellationToken)
         {
@@ -27,12 +29,16 @@ namespace OrderingService.Application.Commands.AddOrder
                 request.RenterId,
                 request.OrderDate,
                 request.PlannedReturnDate,
-                request.ActualReturnDate);
+                request.BookTitle,
+                request.BookAuthor,
+                request.Comment);
 
                 await _context.Orders.AddAsync(order, cancellationToken);
                 await _context.SaveChangesAsync(cancellationToken);
-                
-               
+
+                /*Резервируем книгу*/
+                await _publishEndpoint.Publish(new BookReservedEvent(request.BookId), cancellationToken);
+
                 return order.Id;
 
 
