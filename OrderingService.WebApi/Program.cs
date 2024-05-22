@@ -52,15 +52,16 @@ app.UseSwagger();
 app.UseSwaggerUI(config =>
 {
     config.RoutePrefix = string.Empty;
-    config.SwaggerEndpoint("swagger/v1/swagger.json", "Ordering API");
+    config.SwaggerEndpoint("swagger/v1/swagger.json", "ordering API");
 });
 app.UseStaticFiles();
 
 app.UseRouting();
 app.UseHttpsRedirection();
 app.MapControllerRoute(
-    name: "default",
+    name: "ordering",
     pattern: "{controller}/{action=Index}/{id?}");
-app.Map("/", () => Results.Redirect("/api"));
+app.Map("/", () => Results.Redirect("/api"))
+    .RequireRateLimiting("fixed");
 
 app.Run();
