@@ -1,10 +1,12 @@
-﻿namespace Contracts
+﻿using CatalogService.Domain.Aggregates;
+
+namespace Contracts
 {
-    public record BookReservedEvent(int BookId,
+    public record BookReservedEvent(Guid BookId,
             string title,
             string author,
-            int bookGenre,
+            Genre bookGenre,
             bool isAvailable,
-            int bookCondition);
+            Condition bookCondition);
     
 }

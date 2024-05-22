@@ -41,6 +41,10 @@ namespace CatalogService.Domain.Aggregates
             IsAvailable = isAvailable;
             BookCondition = bookCondition;
         }
+        public void BookReserved()
+        {
+            IsAvailable = false;
+        }
 
     }
 }

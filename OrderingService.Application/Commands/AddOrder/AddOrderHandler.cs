@@ -26,7 +26,8 @@ namespace OrderingService.Application.Commands.AddOrder
                 Order order = new Order(request.BookId,
                 request.RenterId,
                 request.OrderDate,
-                request.ReturnDate);
+                request.PlannedReturnDate,
+                request.ActualReturnDate);
 
                 await _context.Orders.AddAsync(order, cancellationToken);
                 await _context.SaveChangesAsync(cancellationToken);

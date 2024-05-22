@@ -15,11 +15,12 @@ namespace OrderingService.Application.Commands.AddOrder
         public int RenterId { get; private set; }
         public Renter Renter { get; }
         public DateTimeOffset OrderDate { get; private set; }
-        public DateTimeOffset ReturnDate { get; private set; }
+        public DateTimeOffset PlannedReturnDate { get; private set; }
+        public DateTimeOffset ActualReturnDate { get; private set; }
         public string BookTitle { get; private set; }
         public string BookAuthor { get; private set; }
         public OrderStatus OrderStatus { get; private set; }
         public string Comment { get; private set; }
-        public bool IsReturned { get; private set; }
+        
     }
 }
