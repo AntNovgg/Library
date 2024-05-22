@@ -1,4 +1,5 @@
-﻿using OrderingService.Domain.Seeds;
+﻿using Microsoft.EntityFrameworkCore;
+using OrderingService.Domain.Seeds;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace OrderingService.Domain.Aggregates.RenterAggregate
 {
+    [Owned]
     public class FullName : ValueObject
     {
         public string Name { get; private set; }

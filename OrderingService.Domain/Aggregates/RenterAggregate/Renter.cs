@@ -11,23 +11,41 @@ namespace OrderingService.Domain.Aggregates.RenterAggregate
     public class Renter : Entity, IAggregateRoot
     {               
         // FullName is a Value Object pattern 
-        [Required]
+        [Required]        
         public FullName RenterFullName { get; private set; }
         // Address is a Value Object pattern 
-        [Required]
+        [Required]        
         public Address RenterAddress { get; private set; }
         public string Telephone { get; private set; }
         //protected Renter()
         //{
         //    _booksIds = new List<int>();            
         //}
-        public Renter(
-            FullName renterFullName,
+
+
+        //public Renter(
+        //    FullName renterFullName,
+        //    Address renterAddress,
+        //    string telephone) /*:this()*/
+        //{            
+        //    RenterFullName = renterFullName;
+        //    RenterAddress = renterAddress;
+        //    Telephone = telephone;
+        //}
+
+        public Renter(FullName renterFullName,
             Address renterAddress,
-            string telephone) /*:this()*/
-        {            
+            string telephone) : this(telephone)
+        {
             RenterFullName = renterFullName;
             RenterAddress = renterAddress;
+        }
+
+        /// <summary>
+        /// EF constructor
+        /// </summary>
+        private Renter(string telephone) : base()
+        {
             Telephone = telephone;
         }
     }

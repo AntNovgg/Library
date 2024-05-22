@@ -1,4 +1,5 @@
-﻿using OrderingService.Domain.Seeds;
+﻿using Microsoft.EntityFrameworkCore;
+using OrderingService.Domain.Seeds;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ using System.Xml.Linq;
 
 namespace OrderingService.Domain.Aggregates.RenterAggregate
 {
+    [Owned]
     public class Address : ValueObject
     {
         public string Street { get; private set; }

@@ -42,6 +42,25 @@ builder.Services.AddMassTransit(busConfigurator =>
 });
 var app = builder.Build();
 
-app.MapGet("/", () => "Hello World!");
+using (var scope = app.Services.CreateScope())
+{
+    var service = scope.ServiceProvider;
+    var context = service.GetService<OrderingServiceContext>();
+
+}
+app.UseSwagger();
+app.UseSwaggerUI(config =>
+{
+    config.RoutePrefix = string.Empty;
+    config.SwaggerEndpoint("swagger/v1/swagger.json", "Ordering API");
+});
+app.UseStaticFiles();
+
+app.UseRouting();
+app.UseHttpsRedirection();
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller}/{action=Index}/{id?}");
+app.Map("/", () => Results.Redirect("/api"));
 
 app.Run();

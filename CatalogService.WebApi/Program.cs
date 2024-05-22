@@ -30,6 +30,8 @@ builder.Services.AddDbContext<CatalogServiceContext>(options =>
 builder.Services.AddMassTransit(busConfigurator =>
 {
     busConfigurator.SetKebabCaseEndpointNameFormatter();
+    busConfigurator.AddConsumers(typeof(Program).Assembly);
+    busConfigurator.AddActivities(typeof(Program).Assembly);
 
     busConfigurator.UsingRabbitMq((context, configurator) =>
     {
@@ -38,6 +40,7 @@ builder.Services.AddMassTransit(busConfigurator =>
             h.Password("guest");
         });
         configurator.ConfigureEndpoints(context);
+
     });
 });
 

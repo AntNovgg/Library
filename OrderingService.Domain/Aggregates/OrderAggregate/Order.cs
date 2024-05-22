@@ -19,8 +19,8 @@ namespace OrderingService.Domain.Aggregates.OrderAggregate
         //public IReadOnlyCollection<int> BooksIds => _booksIds.AsReadOnly();
 
 
-        public int BookId { get; private set; }
-        public int RenterId { get; private set; }
+        public Guid BookId { get; private set; }
+        public Guid RenterId { get; private set; }
         public Renter Renter { get; }        
         public DateTimeOffset OrderDate { get; private set; }
         public DateTimeOffset PlannedReturnDate { get; private set; }
@@ -30,8 +30,8 @@ namespace OrderingService.Domain.Aggregates.OrderAggregate
         public OrderStatus OrderStatus { get; private set; }
         public string Comment {  get; private set; }         
 
-        public Order(int bookId,
-            int renterId,
+        public Order(Guid bookId,
+            Guid renterId,
             DateTimeOffset orderDate,
             DateTimeOffset plannedReturnDate,           
             string bookTitle,

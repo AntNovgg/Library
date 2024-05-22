@@ -27,9 +27,9 @@ namespace OrderingService.WebApi.Controllers
         ///     renterId: "renter Id",
         ///     orderdate: "order date",
         ///     plannedReturnDate: "planned book return date",
-        ///     booktitle:  "rentered book title"
-        ///     bookauthor: "rentered book author"
-        ///     comment: any order comments
+        ///     booktitle:  "rentered book title",
+        ///     bookauthor: "rentered book author",
+        ///     comment: "any order comments"
         /// }
         /// </remarks>
         /// <param name="addOrderModel">AddOrderModel object</param>

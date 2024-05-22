@@ -8,8 +8,8 @@ namespace OrderingService.WebApi.Models
 {
     public class AddOrderModel : IMapWith<AddOrderCommand>
     {
-        public int BookId { get; set; }
-        public int RenterId { get; set; }        
+        public Guid BookId { get; set; }
+        public Guid RenterId { get; set; }        
         public DateTimeOffset OrderDate { get; set; }
         public DateTimeOffset PlannedReturnDate { get; set; }
         public DateTimeOffset ActualReturnDate { get; set; }

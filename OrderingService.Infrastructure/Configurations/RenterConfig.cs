@@ -14,11 +14,12 @@ namespace OrderingService.Infrastructure.Configurations
         public void Configure(EntityTypeBuilder<Renter> builder)
         {
             builder.HasKey(renter => renter.Id);
+            builder.OwnsOne(renter => renter.RenterFullName);
+            builder.OwnsOne(renter => renter.RenterAddress); 
             builder.Property(renter => renter.Telephone)
                 .IsRequired()
                 .HasMaxLength(250);
-            builder.OwnsOne(renter => renter.RenterAddress);
-            builder.OwnsOne(renter => renter.RenterFullName);
+
         }
     }
 }
