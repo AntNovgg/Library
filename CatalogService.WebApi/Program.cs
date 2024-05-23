@@ -6,8 +6,12 @@ using CatalogService.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using MassTransit;
 using CatalogService.Application.Consumers;
+using CatalogService.Application.Specifications.BookSpecifications;
+using CatalogService.Domain.Aggregates;
+
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddScoped<ISpecFilter<Book>, BetterFilter>();
 builder.Services.AddAutoMapper(config =>
 {
     config.AddProfile(new AssemblyMappingProfile(Assembly.GetExecutingAssembly()));
@@ -16,6 +20,7 @@ builder.Services.AddAutoMapper(config =>
 
 builder.Services.AddApplication();
 builder.Services.AddPersistence(builder.Configuration);
+
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen(config =>
 {

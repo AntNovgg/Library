@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CatalogService.Application.Queries.GetBookList;
+using CatalogService.Application.Queries.GetBookListBySpec;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +8,10 @@ using System.Threading.Tasks;
 
 namespace CatalogService.Application.Specifications.BookSpecifications
 {
-    public interface IFilter<T>
+    public interface ISpecFilter<T>
     {
-        IEnumerable<T> Filter(IEnumerable<T> items,
+        IList<BookLookupBySpecDto> Filterr(IEnumerable<T> items,
             Specification<T> spec);
     }
+
 }

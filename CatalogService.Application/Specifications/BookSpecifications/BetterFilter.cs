@@ -1,4 +1,7 @@
-﻿using CatalogService.Domain.Aggregates;
+﻿using AutoMapper;
+using CatalogService.Application.Queries.GetBookList;
+using CatalogService.Application.Queries.GetBookListBySpec;
+using CatalogService.Domain.Aggregates;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,14 +10,19 @@ using System.Threading.Tasks;
 
 namespace CatalogService.Application.Specifications.BookSpecifications
 {
-    public class BetterFilter : IFilter<Book>
+    public class BetterFilter : ISpecFilter<Book>
     {
-        public IEnumerable<Book> Filter(IEnumerable<Book> items,
+        private readonly IMapper _mapper;
+
+        public BetterFilter(IMapper mapper)
+        {
+            _mapper = mapper;
+        }
+        public IList<BookLookupBySpecDto> Filterr(IEnumerable<Book> items,
             Specification<Book> spec)
         {
-            foreach (var i in items)
-                if (spec.IsSatisfied(i))
-                    yield return i;
+            var filteredItems = items.Where(i => spec.IsSatisfied(i)).ToList();
+            return _mapper.ProjectTo<BookLookupBySpecDto>(filteredItems.AsQueryable(), null, null).ToList();
         }
     }
 }

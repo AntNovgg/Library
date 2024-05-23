@@ -20,6 +20,5 @@ namespace CatalogService.Application.Specifications.BookSpecifications
             return b.BookGenre == genre;
         }
     }
-    {
-    }
+    
 }

@@ -11,20 +11,28 @@ using System.Threading.Tasks;
 
 namespace CatalogService.Application.Queries.GetBookListBySpec
 {
-    public class GetBookListBySpecQuery : IRequest<BookListDto>
+    public class GetBookListBySpecQuery : IRequest<BookListBySpecDto>
     {
         public string? Title;
         public string? Author;
         public Genre Genre;
-        public bool 
+        public bool TitleSpec;
+        public bool AuthorSpec;
+        public bool GenreSpec;
 
         public GetBookListBySpecQuery(string? title,
             string? author,
-            Genre genre)
+            Genre genre,
+            bool titleSpec,
+            bool authorSpec,
+            bool genreSpec)
         {
             Title = title;
             Author = author;
             Genre = genre;
+            TitleSpec = titleSpec;
+            AuthorSpec = authorSpec;
+            GenreSpec = genreSpec;
         }
     }    
 }

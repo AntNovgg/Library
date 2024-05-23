@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 using CatalogService.Application.Commands.UpdateBook;
 using CatalogService.Application.Commands.DeleteBook;
+using CatalogService.Application.Queries.GetBookListBySpec;
+using CatalogService.Domain.Aggregates;
 
 namespace CatalogService.WebApi.Controllers
 {
@@ -32,6 +34,36 @@ namespace CatalogService.WebApi.Controllers
         public async Task<ActionResult<BookListDto>> GetAll()
         {
             var query = new GetBookListQuery{};
+            var response = await Mediator.Send(query);
+            return Ok(response);
+        }
+
+        /// <summary>
+        /// Gets the list of filtered books
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        /// GET /book
+        /// </remarks>
+        /// <returns>Returns BookLookupBySpecDto</returns>
+        /// <response code="200">Success</response>        
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<BookLookupBySpecDto>> GetAllFiltered(string? title,
+            string? author,
+            Genre genre,
+            bool titleSpec,
+            bool authorSpec,
+            bool genreSpec)
+        {
+            var query = new GetBookListBySpecQuery(
+                title,
+                author,
+                genre,
+                titleSpec,
+                authorSpec,
+                genreSpec);
+
             var response = await Mediator.Send(query);
             return Ok(response);
         }
