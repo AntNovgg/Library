@@ -24,8 +24,12 @@ namespace CatalogService.Application.Consumers
             {
                 var entity = await _context.Books.FirstOrDefaultAsync(Book =>
                     Book.Id == context.Message.bookId);
-                entity.BookReserved();
-                await _context.SaveChangesAsync(default(CancellationToken));
+                //availability check
+                if (entity.IsAvailable == true) 
+                { 
+                    entity.BookReserved();
+                    await _context.SaveChangesAsync(default(CancellationToken));
+                }                
             }
             catch (Exception ex)
             {

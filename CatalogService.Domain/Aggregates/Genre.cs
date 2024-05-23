@@ -9,8 +9,8 @@ namespace CatalogService.Domain.Aggregates
 
     public enum Genre
     {
-        Comedy,
-        Drama,
-        Fantasy
+        Comedy = 1,
+        Drama = 2,
+        Fantasy = 3
     }
 }
