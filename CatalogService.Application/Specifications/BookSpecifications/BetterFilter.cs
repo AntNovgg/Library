@@ -22,7 +22,7 @@ namespace CatalogService.Application.Specifications.BookSpecifications
             Specification<Book> spec)
         {
             var filteredItems = items.Where(i => spec.IsSatisfied(i)).ToList();
-            return _mapper.ProjectTo<BookLookupBySpecDto>(filteredItems.AsQueryable(), null, null).ToList();
+            return _mapper.ProjectTo<BookLookupBySpecDto>(filteredItems.AsQueryable()).ToList();
         }
     }
 }

@@ -47,7 +47,7 @@ namespace CatalogService.WebApi.Controllers
         /// </remarks>
         /// <returns>Returns BookLookupBySpecDto</returns>
         /// <response code="200">Success</response>        
-        [HttpGet]
+        [HttpGet("filtered")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<BookLookupBySpecDto>> GetAllFiltered(string? title,
             string? author,
