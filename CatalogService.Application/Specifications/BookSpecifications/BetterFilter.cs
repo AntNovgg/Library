@@ -18,7 +18,7 @@ namespace CatalogService.Application.Specifications.BookSpecifications
         {
             _mapper = mapper;
         }
-        public IList<BookLookupBySpecDto> Filterr(IEnumerable<Book> items,
+        public IList<BookLookupBySpecDto> Filter(IEnumerable<Book> items,
             Specification<Book> spec)
         {
             var filteredItems = items.Where(i => spec.IsSatisfied(i)).ToList();

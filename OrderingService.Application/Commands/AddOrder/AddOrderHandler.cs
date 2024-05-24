@@ -37,7 +37,7 @@ namespace OrderingService.Application.Commands.AddOrder
                 await _context.SaveChangesAsync(cancellationToken);
 
                 /*Резервируем книгу*/
-                await _publishEndpoint.Publish(new BookReservedEvent(request.BookId), cancellationToken);
+                await _publishEndpoint.Publish(new BookReservedEvent(request.BookId, order.Id), cancellationToken);
 
                 return order.Id;
 

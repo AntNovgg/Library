@@ -25,7 +25,7 @@ namespace CatalogService.Application.Queries.GetBookList
         public async Task<BookListDto> Handle(GetBookListQuery request, CancellationToken cancellationToken)
         {
             
-            var booksQuery = await _context.Books.Where(p => p.IsAvailable == true)
+            var booksQuery = await _context.Books/*.Where(p => p.IsAvailable == true)*/
                .ProjectTo<BookLookupDto>(_mapper.ConfigurationProvider)
                .ToListAsync(cancellationToken);
 

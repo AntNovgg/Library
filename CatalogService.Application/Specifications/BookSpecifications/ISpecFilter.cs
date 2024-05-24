@@ -10,7 +10,7 @@ namespace CatalogService.Application.Specifications.BookSpecifications
 {
     public interface ISpecFilter<T>
     {
-        IList<BookLookupBySpecDto> Filterr(IEnumerable<T> items,
+        IList<BookLookupBySpecDto> Filter(IEnumerable<T> items,
             Specification<T> spec);
     }
 

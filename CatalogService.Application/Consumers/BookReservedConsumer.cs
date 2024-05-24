@@ -1,6 +1,7 @@
 ﻿using CatalogService.Application.Common.Interfaces;
 using Contracts;
 using MassTransit;
+using MassTransit.Transports;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -14,10 +15,14 @@ namespace CatalogService.Application.Consumers
     public class BookReservedConsumer : IConsumer<BookReservedEvent>
     {
         private readonly ICatalogServiceContext _context;
-        public BookReservedConsumer(ICatalogServiceContext context)
+        private readonly IPublishEndpoint _publishEndpoint;
+
+        public BookReservedConsumer(ICatalogServiceContext context, IPublishEndpoint publishEndpoint)
         {
             _context = context;
+            _publishEndpoint = publishEndpoint;
         }
+
         public async Task Consume(ConsumeContext<BookReservedEvent> context)
         {
             try
@@ -29,7 +34,12 @@ namespace CatalogService.Application.Consumers
                 { 
                     entity.BookReserved();
                     await _context.SaveChangesAsync(default(CancellationToken));
-                }                
+                }
+                else
+                {
+                    await _publishEndpoint.Publish(new BookReservedFailedEvent(context.Message.orderId));
+                }
+                
             }
             catch (Exception ex)
             {

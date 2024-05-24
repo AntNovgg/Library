@@ -2,6 +2,6 @@
 
 namespace Contracts
 {
-    public record BookReservedEvent(Guid bookId);
+    public record BookReservedEvent(Guid bookId, Guid orderId);
     
 }

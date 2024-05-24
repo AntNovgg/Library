@@ -8,10 +8,12 @@ using MassTransit;
 using CatalogService.Application.Consumers;
 using CatalogService.Application.Specifications.BookSpecifications;
 using CatalogService.Domain.Aggregates;
+using CatalogService.Application.Specifications.BookSpecifications.Factory;
 
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<ISpecFilter<Book>, BetterFilter>();
+builder.Services.AddScoped<ISpecificationFactory<Book>, BookSpecificationFactory>();
 builder.Services.AddAutoMapper(config =>
 {
     config.AddProfile(new AssemblyMappingProfile(Assembly.GetExecutingAssembly()));

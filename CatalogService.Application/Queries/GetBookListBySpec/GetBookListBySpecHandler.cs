@@ -3,7 +3,9 @@ using AutoMapper.QueryableExtensions;
 using CatalogService.Application.Common.Interfaces;
 using CatalogService.Application.Queries.GetBookList;
 using CatalogService.Application.Specifications.BookSpecifications;
+using CatalogService.Application.Specifications.BookSpecifications.Factory;
 using CatalogService.Domain.Aggregates;
+using MassTransit;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -20,47 +22,22 @@ namespace CatalogService.Application.Queries.GetBookListBySpec
         private readonly ICatalogServiceContext _context;
         private readonly IMapper _mapper;
         private readonly ISpecFilter<Book> _betterFilter;
+        private readonly ISpecificationFactory<Book> _specificationFactory;
 
-        public GetBookListBySpecHandler(ICatalogServiceContext context, IMapper mapper, ISpecFilter<Book> betterFilter)
+        public GetBookListBySpecHandler(ICatalogServiceContext context, IMapper mapper, ISpecFilter<Book> betterFilter, ISpecificationFactory<Book> specificationFactory)
         {
             _context = context;
             _mapper = mapper;
             _betterFilter = betterFilter;
+            _specificationFactory = specificationFactory;
         }
 
         public async Task<BookListBySpecDto> Handle(GetBookListBySpecQuery request, CancellationToken cancellationToken)
         {
-            var books = await _context.Books.ToListAsync();
-            
-            if (request.TitleSpec)
-            {
-                var titleSpec = new TitleSpecification(request.Title);
-                var filteredBooks = _betterFilter.Filterr(books, titleSpec);
+                var books = await _context.Books.ToListAsync();
+                var spec = _specificationFactory.CreateSpecification(request);
+                var filteredBooks = _betterFilter.Filter(books, spec);
                 return new BookListBySpecDto { Books = filteredBooks };
-            }
-            else if (request.AuthorSpec)
-            {
-                var authorSpec = new AuthorSpecification(request.Author);
-                var filteredBooks = _betterFilter.Filterr(books, authorSpec);
-                return new BookListBySpecDto { Books = filteredBooks };
-            }
-            else if (request.GenreSpec)
-            {
-                var genreSpec = new GenreSpecification(request.Genre);
-                var filteredBooks = _betterFilter.Filterr(books, genreSpec);
-                return new BookListBySpecDto { Books = filteredBooks };
-            }
-            else if (request.TitleSpec & request.AuthorSpec)
-            {
-                var titleAuthorSpec = new AndSpecification<Book>(new TitleSpecification(request.Title)
-                                 & new AuthorSpecification(request.Author));
-                var filteredBooks = _betterFilter.Filterr(books, titleAuthorSpec);
-                return new BookListBySpecDto { Books = filteredBooks };
-            }
-            var allbooks = await _context.Books
-               .ProjectTo<BookLookupBySpecDto>(_mapper.ConfigurationProvider)
-               .ToListAsync(cancellationToken);
-            return new BookListBySpecDto { Books = allbooks };
         }
     }
 }

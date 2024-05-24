@@ -54,7 +54,8 @@ namespace CatalogService.WebApi.Controllers
             Genre genre,
             bool titleSpec,
             bool authorSpec,
-            bool genreSpec)
+            bool genreSpec,
+            bool availabilitySpec)
         {
             var query = new GetBookListBySpecQuery(
                 title,
@@ -62,7 +63,8 @@ namespace CatalogService.WebApi.Controllers
                 genre,
                 titleSpec,
                 authorSpec,
-                genreSpec);
+                genreSpec,
+                availabilitySpec);
 
             var response = await Mediator.Send(query);
             return Ok(response);

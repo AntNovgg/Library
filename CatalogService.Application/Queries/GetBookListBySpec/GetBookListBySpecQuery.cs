@@ -19,13 +19,15 @@ namespace CatalogService.Application.Queries.GetBookListBySpec
         public bool TitleSpec;
         public bool AuthorSpec;
         public bool GenreSpec;
+        public bool AvailabilitySpec;
 
         public GetBookListBySpecQuery(string? title,
             string? author,
             Genre genre,
             bool titleSpec,
             bool authorSpec,
-            bool genreSpec)
+            bool genreSpec,
+            bool availabilitySpec)
         {
             Title = title;
             Author = author;
@@ -33,6 +35,7 @@ namespace CatalogService.Application.Queries.GetBookListBySpec
             TitleSpec = titleSpec;
             AuthorSpec = authorSpec;
             GenreSpec = genreSpec;
+            AvailabilitySpec = availabilitySpec;
         }
     }    
 }
