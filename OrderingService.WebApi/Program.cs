@@ -5,6 +5,7 @@ using OrderingService.Application;
 using OrderingService.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using MassTransit;
+using OrderingService.Application.Consumers;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddAutoMapper(config =>
@@ -30,6 +31,7 @@ builder.Services.AddDbContext<OrderingServiceContext>(options =>
 builder.Services.AddMassTransit(busConfigurator =>
 {
     busConfigurator.SetKebabCaseEndpointNameFormatter();
+    busConfigurator.AddConsumer<BookReservedFailedConsumer>();
 
     busConfigurator.UsingRabbitMq((context, configurator) =>
     {

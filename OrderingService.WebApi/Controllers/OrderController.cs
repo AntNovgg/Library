@@ -42,6 +42,7 @@ namespace OrderingService.WebApi.Controllers
             var command = _mapper.Map<AddOrderCommand>(addOrderModel);
 
             var orderId = await Mediator.Send(command);
+
             return Ok(orderId);
         }
     }

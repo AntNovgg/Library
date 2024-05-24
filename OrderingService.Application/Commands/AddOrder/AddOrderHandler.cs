@@ -40,16 +40,12 @@ namespace OrderingService.Application.Commands.AddOrder
                 await _publishEndpoint.Publish(new BookReservedEvent(request.BookId, order.Id), cancellationToken);
 
                 return order.Id;
-
-
             }
             catch (Exception ex)
             {
                 var errorMessage = $"{DateTime.Now} - произошла ошибка при выполнении метода {nameof(AddOrderHandler)} - {ex.Message}";
                 throw new Exception(errorMessage);
             }
-
-
         }
     }
 }
