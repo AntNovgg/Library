@@ -12,25 +12,31 @@ namespace CatalogService.Application.LinqSpecs.Factory
 {
     public class BookSpecFactory : ISpecFactory<Book>
     {
-        public Specification<Book> CreateSpecification(GetBookListBySpecQuery request)
+        public Specification<Book> CreateSpecification(string? title,
+            string? author,
+            Genre genre,
+            bool titleSpec,
+            bool authorSpec,
+            bool genreSpec,
+            bool availabilitySpec)
         {
             Specification<Book> specification = new DefaultSpec();
 
-            if (request.AvailabilitySpec)
+            if (availabilitySpec)
             {
                 specification = new AvailabilitySpec(true);
             }
-            if (request.TitleSpec)
+            if (titleSpec)
             {
-                specification = specification & new TittleSpec(request.Title);
+                specification = specification & new TittleSpec(title);
             }
-            if (request.AuthorSpec)
+            if (authorSpec)
             {
-                specification = specification & new AuthorSpec(request.Author);
+                specification = specification & new AuthorSpec(author);
             }
-            if (request.GenreSpec)
+            if (genreSpec)
             {
-                specification = specification & new GenreSpec(request.Genre);
+                specification = specification & new GenreSpec(genre);
             }
             return specification;
         }

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using CatalogService.Application.Common.Interfaces;
+using CatalogService.Application.LinqSpecs;
 using CatalogService.Application.LinqSpecs.Factory;
 using CatalogService.Application.Queries.GetBookList;
 using CatalogService.Application.Specifications.BookSpecifications;
@@ -35,7 +36,13 @@ namespace CatalogService.Application.Queries.GetBookListBySpec
 
         public async Task<BookListBySpecDto> Handle(GetBookListBySpecQuery request, CancellationToken cancellationToken)
         {
-            var spec = _specFactory.CreateSpecification(request);
+            var spec = _specFactory.CreateSpecification(request.Title,
+            request.Author,
+            request.Genre,
+            request.TitleSpec,
+            request.AuthorSpec,
+            request.GenreSpec,
+            request.AvailabilitySpec);
             var books = await _context.Books.Where(spec).ProjectTo<BookLookupBySpecDto>(_mapper.ConfigurationProvider).ToListAsync(cancellationToken);
             return new BookListBySpecDto { Books = books };
         }

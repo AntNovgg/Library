@@ -1,4 +1,5 @@
 ﻿using CatalogService.Application.Queries.GetBookListBySpec;
+using CatalogService.Domain.Aggregates;
 using LinqSpecs;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,12 @@ namespace CatalogService.Application.LinqSpecs.Factory
 {
     public interface ISpecFactory<T>
     {
-        Specification<T> CreateSpecification(GetBookListBySpecQuery request);
+        Specification<T> CreateSpecification(string? title,
+            string? author,
+            Genre genre,
+            bool titleSpec,
+            bool authorSpec,
+            bool genreSpec,
+            bool availabilitySpec);
     }
 }
