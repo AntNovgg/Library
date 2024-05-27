@@ -9,11 +9,12 @@ using CatalogService.Application.Consumers;
 using CatalogService.Application.Specifications.BookSpecifications;
 using CatalogService.Domain.Aggregates;
 using CatalogService.Application.Specifications.BookSpecifications.Factory;
+using CatalogService.Application.LinqSpecs.Factory;
 
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<ISpecFilter<Book>, BetterFilter>();
-builder.Services.AddScoped<ISpecificationFactory<Book>, BookSpecificationFactory>();
+builder.Services.AddScoped<ISpecFactory<Book>, BookSpecFactory>();
 builder.Services.AddAutoMapper(config =>
 {
     config.AddProfile(new AssemblyMappingProfile(Assembly.GetExecutingAssembly()));

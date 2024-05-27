@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using CatalogService.Application.Common.Interfaces;
+using CatalogService.Application.LinqSpecs.Factory;
 using CatalogService.Application.Queries.GetBookList;
 using CatalogService.Application.Specifications.BookSpecifications;
 using CatalogService.Application.Specifications.BookSpecifications.Factory;
@@ -22,22 +23,21 @@ namespace CatalogService.Application.Queries.GetBookListBySpec
         private readonly ICatalogServiceContext _context;
         private readonly IMapper _mapper;
         private readonly ISpecFilter<Book> _betterFilter;
-        private readonly ISpecificationFactory<Book> _specificationFactory;
+        private readonly ISpecFactory<Book> _specFactory;
 
-        public GetBookListBySpecHandler(ICatalogServiceContext context, IMapper mapper, ISpecFilter<Book> betterFilter, ISpecificationFactory<Book> specificationFactory)
+        public GetBookListBySpecHandler(ICatalogServiceContext context, IMapper mapper, ISpecFilter<Book> betterFilter, ISpecFactory<Book> specFactory)
         {
             _context = context;
             _mapper = mapper;
             _betterFilter = betterFilter;
-            _specificationFactory = specificationFactory;
+            _specFactory = specFactory;
         }
 
         public async Task<BookListBySpecDto> Handle(GetBookListBySpecQuery request, CancellationToken cancellationToken)
         {
-                var books = await _context.Books.ToListAsync();
-                var spec = _specificationFactory.CreateSpecification(request);
-                var filteredBooks = _betterFilter.Filter(books, spec);
-                return new BookListBySpecDto { Books = filteredBooks };
+            var spec = _specFactory.CreateSpecification(request);
+            var books = await _context.Books.Where(spec).ProjectTo<BookLookupBySpecDto>(_mapper.ConfigurationProvider).ToListAsync(cancellationToken);
+            return new BookListBySpecDto { Books = books };
         }
     }
 }

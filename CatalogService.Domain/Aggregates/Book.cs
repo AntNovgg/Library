@@ -1,4 +1,5 @@
 ﻿using CatalogService.Domain.Seeds;
+using LinqSpecs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,6 +46,9 @@ namespace CatalogService.Domain.Aggregates
         {
             IsAvailable = false;
         }
+        public static readonly Specification<Book> IsAvailableSpecQ =
+            new AdHocSpecification<Book>(x=> x.IsAvailable);
+        
 
     }
 }

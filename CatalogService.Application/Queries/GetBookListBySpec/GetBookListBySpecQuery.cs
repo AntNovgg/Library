@@ -1,4 +1,5 @@
-﻿using CatalogService.Application.Queries.GetBookList;
+﻿using CatalogService.Application.LinqSpecs;
+using CatalogService.Application.Queries.GetBookList;
 using CatalogService.Application.Specifications.BookSpecifications;
 using CatalogService.Domain.Aggregates;
 using MediatR;
@@ -36,6 +37,7 @@ namespace CatalogService.Application.Queries.GetBookListBySpec
             AuthorSpec = authorSpec;
             GenreSpec = genreSpec;
             AvailabilitySpec = availabilitySpec;
+            
         }
     }    
 }
