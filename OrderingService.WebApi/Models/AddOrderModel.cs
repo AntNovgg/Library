@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using OrderingService.Application.Commands.AddOrder;
 using OrderingService.Application.Common.Mappings;
+using OrderingService.Application.Orders.Commands.AddOrder;
 using OrderingService.Domain.Aggregates.OrderAggregate;
 using OrderingService.Domain.Aggregates.RenterAggregate;
 

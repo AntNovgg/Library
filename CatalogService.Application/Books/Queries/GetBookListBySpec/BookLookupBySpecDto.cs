@@ -1,30 +1,29 @@
 ﻿using AutoMapper;
-using CatalogService.Application.Books.Commands.AddBook;
 using CatalogService.Application.Common.Mappings;
 using CatalogService.Domain.Aggregates.BookAggregate;
-using System.ComponentModel.DataAnnotations;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace CatalogService.WebApi.Models
+namespace CatalogService.Application.Books.Queries.GetBookListBySpec
 {
-    public class AddBookModel : IMapWith<AddBookCommand>
+    public class BookLookupBySpecDto : IMapWith<Book>
     {
-        [Required]
+
         public string Tittle { get; set; }
-        [Required]
         public Guid AuthorId { get; set; }
-        [Required]
         public Genre BookGenre { get; set; }
-        [Required]
         public Condition BookCondition { get; set; }
-        [Required]
         public bool IsAvailable { get; set; }
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<AddBookModel, AddBookCommand>()
-                .ForMember(bookCommand => bookCommand.Tittle,
-                    opt => opt.MapFrom(bookModel => bookModel.Tittle))
-                .ForMember(bookCommand => bookCommand.AuthorId,
-                    opt => opt.MapFrom(bookModel => bookModel.AuthorId))
+            profile.CreateMap<Book, BookLookupBySpecDto>()
+                .ForMember(bookDto => bookDto.Tittle,
+                    opt => opt.MapFrom(book => book.Tittle))
+                .ForMember(bookDto => bookDto.AuthorId,
+                    opt => opt.MapFrom(book => book.AuthorId))
                 .ForMember(bookCommand => bookCommand.BookGenre,
                     opt => opt.MapFrom(bookModel => bookModel.BookGenre))
                 .ForMember(bookCommand => bookCommand.BookCondition,
@@ -33,4 +32,5 @@ namespace CatalogService.WebApi.Models
                     opt => opt.MapFrom(bookModel => bookModel.IsAvailable));
         }
     }
+
 }

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using OrderingService.Application.Commands.AddRenter;
 using OrderingService.Application.Common.Mappings;
+using OrderingService.Application.Renters.Commands.AddRenter;
 
 namespace OrderingService.WebApi.Models
 {

@@ -1,13 +1,16 @@
 ﻿using CatalogService.Application.Queries.GetBookDetails;
 using CatalogService.Application.Queries.GetBookList;
-using CatalogService.Application.Commands.AddBook;
 using CatalogService.WebApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
-using CatalogService.Application.Commands.UpdateBook;
 using CatalogService.Application.Commands.DeleteBook;
 using CatalogService.Application.Queries.GetBookListBySpec;
 using CatalogService.Domain.Aggregates.BookAggregate;
+using CatalogService.Application.Books.Commands.AddBook;
+using CatalogService.Application.Books.Commands.UpdateBook;
+using CatalogService.Application.Books.Queries.GetBookDetails;
+using CatalogService.Application.Books.Queries.GetBookList;
+using CatalogService.Application.Books.Queries.GetBookListBySpec;
 
 namespace CatalogService.WebApi.Controllers
 {

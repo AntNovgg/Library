@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using OrderingService.Application.Commands.AddOrder;
-using OrderingService.Application.Commands.AddRenter;
+using OrderingService.Application.Renters.Commands.AddRenter;
 using OrderingService.WebApi.Models;
 
 namespace OrderingService.WebApi.Controllers

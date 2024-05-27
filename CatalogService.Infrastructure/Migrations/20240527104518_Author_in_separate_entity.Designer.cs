@@ -3,6 +3,7 @@ using System;
 using CatalogService.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CatalogService.Infrastructure.Migrations
 {
     [DbContext(typeof(CatalogServiceContext))]
-    partial class CatalogServiceContextModelSnapshot : ModelSnapshot
+    [Migration("20240527104518_Author_in_separate_entity")]
+    partial class Author_in_separate_entity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,17 +24,6 @@ namespace CatalogService.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
-
-            modelBuilder.Entity("CatalogService.Domain.Aggregates.AuthorAggregate.Author", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Authors");
-                });
 
             modelBuilder.Entity("CatalogService.Domain.Aggregates.BookAggregate.Book", b =>
                 {
@@ -61,37 +53,6 @@ namespace CatalogService.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Books");
-                });
-
-            modelBuilder.Entity("CatalogService.Domain.Aggregates.AuthorAggregate.Author", b =>
-                {
-                    b.OwnsOne("CatalogService.Domain.Aggregates.AuthorAggregate.FullName", "AuthorFullName", b1 =>
-                        {
-                            b1.Property<Guid>("AuthorId")
-                                .HasColumnType("uuid");
-
-                            b1.Property<string>("LastName")
-                                .IsRequired()
-                                .HasColumnType("text");
-
-                            b1.Property<string>("MiddleName")
-                                .IsRequired()
-                                .HasColumnType("text");
-
-                            b1.Property<string>("Name")
-                                .IsRequired()
-                                .HasColumnType("text");
-
-                            b1.HasKey("AuthorId");
-
-                            b1.ToTable("Authors");
-
-                            b1.WithOwner()
-                                .HasForeignKey("AuthorId");
-                        });
-
-                    b.Navigation("AuthorFullName")
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

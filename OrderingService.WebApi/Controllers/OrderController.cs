@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using OrderingService.Application.Commands.AddOrder;
+using OrderingService.Application.Orders.Commands.AddOrder;
 using OrderingService.WebApi.Models;
 
 namespace OrderingService.WebApi.Controllers

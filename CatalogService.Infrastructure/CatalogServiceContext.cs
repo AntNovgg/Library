@@ -8,13 +8,16 @@ using System.Threading.Tasks;
 using CatalogService.Application.Common.Interfaces;
 using CatalogService.Infrastructure.Configurations;
 using CatalogService.Domain.Aggregates.BookAggregate;
+using CatalogService.Domain.Aggregates.AuthorAggregate;
+using CatalogService.Domain.Seeds;
 
 
 namespace CatalogService.Infrastructure
 {
-    public class CatalogServiceContext : DbContext, ICatalogServiceContext
+    public class CatalogServiceContext : DbContext, ICatalogServiceContext, IUnitOfWork
     {       
         public DbSet<Book> Books { get; set; }
+        public DbSet<Author> Authors { get; set; }
 
         public CatalogServiceContext(DbContextOptions<CatalogServiceContext> options)
             : base(options) { }
