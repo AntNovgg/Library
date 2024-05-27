@@ -1,4 +1,4 @@
-﻿using CatalogService.Domain.Aggregates;
+﻿using CatalogService.Domain.Aggregates.BookAggregate;
 using LinqSpecs;
 using System;
 using System.Collections.Generic;

@@ -1,19 +1,19 @@
 ﻿using AutoMapper;
 using CatalogService.Application.Common.Mappings;
-using CatalogService.Domain.Aggregates;
+using CatalogService.Domain.Aggregates.BookAggregate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static CatalogService.Domain.Aggregates.Book;
+using static CatalogService.Domain.Aggregates.BookAggregate.Book;
 
 namespace CatalogService.Application.Queries.GetBookDetails
 {
     public class BookDetailsDto : IMapWith<Book>
     {
         public Guid Id { get; set; }
-        public string Title { get; set; }
+        public string Tittle { get; set; }
         public string Author { get; set; }
         public string BookGenre { get; set; }
         public bool IsAvailable { get; set; }
@@ -21,8 +21,8 @@ namespace CatalogService.Application.Queries.GetBookDetails
         public void Mapping(Profile profile)
         {
             profile.CreateMap<Book, BookDetailsDto>()
-                .ForMember(bookVm => bookVm.Title,
-                    opt => opt.MapFrom(book => book.Title))
+                .ForMember(bookVm => bookVm.Tittle,
+                    opt => opt.MapFrom(book => book.Tittle))
                 .ForMember(bookVm => bookVm.Author,
                     opt => opt.MapFrom(book => book.Author))
                 .ForMember(bookVm => bookVm.BookGenre,

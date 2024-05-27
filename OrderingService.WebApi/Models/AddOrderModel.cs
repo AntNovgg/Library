@@ -12,7 +12,7 @@ namespace OrderingService.WebApi.Models
         public Guid RenterId { get; set; }        
         public DateTimeOffset OrderDate { get; set; }
         public DateTimeOffset PlannedReturnDate { get; set; }
-        public string BookTitle { get; set; }
+        public string BookTittle { get; set; }
         public string BookAuthor { get; set; }
         public string Comment { get; set; }
         public void Mapping(Profile profile)
@@ -26,8 +26,8 @@ namespace OrderingService.WebApi.Models
                     opt => opt.MapFrom(orderModel => orderModel.OrderDate))
                 .ForMember(orderCommand => orderCommand.PlannedReturnDate,
                     opt => opt.MapFrom(orderModel => orderModel.PlannedReturnDate))                
-                .ForMember(orderCommand => orderCommand.BookTitle,
-                    opt => opt.MapFrom(orderModel => orderModel.BookTitle))
+                .ForMember(orderCommand => orderCommand.BookTittle,
+                    opt => opt.MapFrom(orderModel => orderModel.BookTittle))
                 .ForMember(orderCommand => orderCommand.BookAuthor,
                     opt => opt.MapFrom(orderModel => orderModel.BookAuthor))                
                 .ForMember(orderCommand => orderCommand.Comment,

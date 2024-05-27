@@ -1,4 +1,4 @@
-﻿using CatalogService.Domain.Aggregates;
+﻿using CatalogService.Domain.Aggregates.BookAggregate;
 using LinqSpecs;
 using System;
 using System.Collections.Generic;
@@ -20,7 +20,7 @@ namespace CatalogService.Application.LinqSpecs
 
         public override Expression<Func<Book, bool>> ToExpression()
         {
-            return t => t.Title == Tittle;
+            return t => t.Tittle == Tittle;
         }
     }
 }

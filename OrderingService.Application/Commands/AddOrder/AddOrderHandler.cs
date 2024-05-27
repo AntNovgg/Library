@@ -14,13 +14,15 @@ namespace OrderingService.Application.Commands.AddOrder
 {
     public class AddOrderHandler : IRequestHandler<AddOrderCommand, Guid>
     {
-        private readonly IOrderingServiceContext _context;
+        private readonly IOrderRepository _orderRepository;
         private readonly IPublishEndpoint _publishEndpoint;
-        public AddOrderHandler(IOrderingServiceContext context, IPublishEndpoint publishEndpoint)
+
+        public AddOrderHandler(IOrderRepository orderRepository, IPublishEndpoint publishEndpoint)
         {
-            _context = context;
+            _orderRepository = orderRepository;
             _publishEndpoint = publishEndpoint;
         }
+
         public async Task<Guid> Handle(AddOrderCommand request, CancellationToken cancellationToken)
         {
             try
@@ -29,12 +31,12 @@ namespace OrderingService.Application.Commands.AddOrder
                 request.RenterId,
                 request.OrderDate,
                 request.PlannedReturnDate,
-                request.BookTitle,
+                request.BookTittle,
                 request.BookAuthor,
                 request.Comment);
 
-                await _context.Orders.AddAsync(order, cancellationToken);
-                await _context.SaveChangesAsync(cancellationToken);
+                _orderRepository.Add(order);
+                await _orderRepository.UnitOfWork.SaveChangesAsync(cancellationToken);
 
                 /*Резервируем книгу*/
                 await _publishEndpoint.Publish(new BookReservedEvent(request.BookId, order.Id), cancellationToken);

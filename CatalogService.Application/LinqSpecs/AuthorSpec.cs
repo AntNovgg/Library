@@ -1,4 +1,4 @@
-﻿using CatalogService.Domain.Aggregates;
+﻿using CatalogService.Domain.Aggregates.BookAggregate;
 using LinqSpecs;
 using System;
 using System.Collections.Generic;
@@ -11,16 +11,16 @@ namespace CatalogService.Application.LinqSpecs
 {
     public class AuthorSpec : Specification<Book>
     {
-        public string Author { get; set; }
+        public Guid AuthorId { get; set; }
 
-        public AuthorSpec(string author)
+        public AuthorSpec(Guid authorId)
         {
-            Author = author;
+            AuthorId = authorId;
         }
 
         public override Expression<Func<Book, bool>> ToExpression()
         {
-            return t => t.Author == Author;
+            return t => t.AuthorId == AuthorId;
         }
     }
 }

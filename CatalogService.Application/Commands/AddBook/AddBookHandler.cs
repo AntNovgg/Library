@@ -1,5 +1,5 @@
 ﻿using CatalogService.Application.Common.Interfaces;
-using CatalogService.Domain.Aggregates;
+using CatalogService.Domain.Aggregates.BookAggregate;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -22,7 +22,7 @@ namespace CatalogService.Application.Commands.AddBook
             try
             {
 
-                Book book = new Book(request.Title, request.Author, request.BookGenre, true, request.BookCondition);
+                Book book = new Book(request.Tittle, request.AuthorId, request.BookGenre, true, request.BookCondition);
 
                 await _context.Books.AddAsync(book, cancellationToken);
                 await _context.SaveChangesAsync(cancellationToken);

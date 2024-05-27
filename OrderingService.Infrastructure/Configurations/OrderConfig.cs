@@ -14,7 +14,7 @@ namespace OrderingService.Infrastructure.Configurations
         public void Configure(EntityTypeBuilder<Order> builder)
         {
             builder.HasKey(renter => renter.Id);
-            builder.Property(renter => renter.BookTitle)
+            builder.Property(renter => renter.BookTittle)
                 .IsRequired()
                 .HasMaxLength(250);
             builder.Property(renter => renter.BookAuthor)

@@ -1,6 +1,6 @@
 ﻿
 using CatalogService.Application.Queries.GetBookListBySpec;
-using CatalogService.Domain.Aggregates;
+using CatalogService.Domain.Aggregates.BookAggregate;
 using LinqSpecs;
 using System;
 using System.Collections.Generic;
@@ -12,10 +12,10 @@ namespace CatalogService.Application.LinqSpecs.Factory
 {
     public class BookSpecFactory : ISpecFactory<Book>
     {
-        public Specification<Book> CreateSpecification(string? title,
-            string? author,
+        public Specification<Book> CreateSpecification(string? tittle,
+            Guid authorId,
             Genre genre,
-            bool titleSpec,
+            bool tittleSpec,
             bool authorSpec,
             bool genreSpec,
             bool availabilitySpec)
@@ -26,13 +26,13 @@ namespace CatalogService.Application.LinqSpecs.Factory
             {
                 specification = new AvailabilitySpec(true);
             }
-            if (titleSpec)
+            if (tittleSpec)
             {
-                specification = specification & new TittleSpec(title);
+                specification = specification & new TittleSpec(tittle);
             }
             if (authorSpec)
             {
-                specification = specification & new AuthorSpec(author);
+                specification = specification & new AuthorSpec(authorId);
             }
             if (genreSpec)
             {

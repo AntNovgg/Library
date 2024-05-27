@@ -4,13 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CatalogService.Domain.Aggregates
+namespace OrderingService.Application.Queries.GetOrderDetails
 {
-
-    public enum Genre
+    internal class GetOrderDetailsQuery
     {
-        Comedy = 1,
-        Drama = 2,
-        Fantasy = 3
     }
 }

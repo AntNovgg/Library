@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using MassTransit.Transports;
+using MediatR;
 using OrderingService.Application.Commands.AddOrder;
 using OrderingService.Application.Common.Interfaces;
 using OrderingService.Domain.Aggregates.OrderAggregate;
@@ -13,11 +14,13 @@ namespace OrderingService.Application.Commands.AddRenter
 {
     public class AddRenterHandler : IRequestHandler<AddRenterCommand, Guid>
     {
-        private readonly IOrderingServiceContext _context;
-        public AddRenterHandler(IOrderingServiceContext context)
+        private readonly IRenterRepository _renterRepository;
+
+        public AddRenterHandler(IRenterRepository renterRepository)
         {
-            _context = context;
+            _renterRepository = renterRepository;
         }
+
         public async Task<Guid> Handle(AddRenterCommand request, CancellationToken cancellationToken)
         {
             try
@@ -31,10 +34,9 @@ namespace OrderingService.Application.Commands.AddRenter
                     request.LastName, 
                     request.MiddleName);
 
-                Renter renter = new Renter(fullname, address, request.Telephone);                
-
-                await _context.Renters.AddAsync(renter, cancellationToken);
-                await _context.SaveChangesAsync(cancellationToken);
+                Renter renter = new Renter(fullname, address, request.Telephone);
+                _renterRepository.Add(renter);
+                await _renterRepository.UnitOfWork.SaveChangesAsync(cancellationToken);
 
                 return renter.Id;
             }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MediatR;
-using static CatalogService.Domain.Aggregates.Book;
+using static CatalogService.Domain.Aggregates.BookAggregate.Book;
 
 
 namespace CatalogService.Application.Commands.DeleteBook

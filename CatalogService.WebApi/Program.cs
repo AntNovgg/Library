@@ -6,14 +6,11 @@ using CatalogService.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using MassTransit;
 using CatalogService.Application.Consumers;
-using CatalogService.Application.Specifications.BookSpecifications;
-using CatalogService.Domain.Aggregates;
-using CatalogService.Application.Specifications.BookSpecifications.Factory;
 using CatalogService.Application.LinqSpecs.Factory;
+using CatalogService.Domain.Aggregates.BookAggregate;
 
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddScoped<ISpecFilter<Book>, BetterFilter>();
 builder.Services.AddScoped<ISpecFactory<Book>, BookSpecFactory>();
 builder.Services.AddAutoMapper(config =>
 {

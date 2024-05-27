@@ -6,8 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CatalogService.Application.Common.Interfaces;
-using CatalogService.Domain.Aggregates;
 using CatalogService.Infrastructure.Configurations;
+using CatalogService.Domain.Aggregates.BookAggregate;
 
 
 namespace CatalogService.Infrastructure

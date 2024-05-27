@@ -4,9 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CatalogService.Domain.Aggregates
+namespace CatalogService.Domain.Aggregates.BookAggregate
 {
-    internal class Author
+
+    public enum Condition
     {
+        Great,
+        Good,
+        Bad
     }
+
 }

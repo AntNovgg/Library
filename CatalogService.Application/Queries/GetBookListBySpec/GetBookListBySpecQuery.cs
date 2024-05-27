@@ -1,7 +1,6 @@
 ﻿using CatalogService.Application.LinqSpecs;
 using CatalogService.Application.Queries.GetBookList;
-using CatalogService.Application.Specifications.BookSpecifications;
-using CatalogService.Domain.Aggregates;
+using CatalogService.Domain.Aggregates.BookAggregate;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -15,7 +14,7 @@ namespace CatalogService.Application.Queries.GetBookListBySpec
     public class GetBookListBySpecQuery : IRequest<BookListBySpecDto>
     {
         public string? Title;
-        public string? Author;
+        public Guid AuthorId;
         public Genre Genre;
         public bool TitleSpec;
         public bool AuthorSpec;
@@ -23,7 +22,7 @@ namespace CatalogService.Application.Queries.GetBookListBySpec
         public bool AvailabilitySpec;
 
         public GetBookListBySpecQuery(string? title,
-            string? author,
+            Guid authorId,
             Genre genre,
             bool titleSpec,
             bool authorSpec,
@@ -31,7 +30,7 @@ namespace CatalogService.Application.Queries.GetBookListBySpec
             bool availabilitySpec)
         {
             Title = title;
-            Author = author;
+            AuthorId = authorId;
             Genre = genre;
             TitleSpec = titleSpec;
             AuthorSpec = authorSpec;

@@ -9,10 +9,11 @@ using OrderingService.Domain.Aggregates.OrderAggregate;
 using OrderingService.Domain.Aggregates.RenterAggregate;
 using OrderingService.Infrastructure.Configurations;
 using OrderingService.Application.Common.Interfaces;
+using OrderingService.Domain.Seeds;
 
 namespace OrderingService.Infrastructure
 {
-    public class OrderingServiceContext : DbContext, IOrderingServiceContext
+    public class OrderingServiceContext : DbContext, IOrderingServiceContext, IUnitOfWork
     {       
         public DbSet<Order> Orders { get; set; }
         public DbSet<Renter> Renters { get; set; }

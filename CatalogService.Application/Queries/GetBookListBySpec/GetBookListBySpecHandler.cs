@@ -4,9 +4,7 @@ using CatalogService.Application.Common.Interfaces;
 using CatalogService.Application.LinqSpecs;
 using CatalogService.Application.LinqSpecs.Factory;
 using CatalogService.Application.Queries.GetBookList;
-using CatalogService.Application.Specifications.BookSpecifications;
-using CatalogService.Application.Specifications.BookSpecifications.Factory;
-using CatalogService.Domain.Aggregates;
+using CatalogService.Domain.Aggregates.BookAggregate;
 using MassTransit;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -23,21 +21,19 @@ namespace CatalogService.Application.Queries.GetBookListBySpec
     {
         private readonly ICatalogServiceContext _context;
         private readonly IMapper _mapper;
-        private readonly ISpecFilter<Book> _betterFilter;
         private readonly ISpecFactory<Book> _specFactory;
 
-        public GetBookListBySpecHandler(ICatalogServiceContext context, IMapper mapper, ISpecFilter<Book> betterFilter, ISpecFactory<Book> specFactory)
+        public GetBookListBySpecHandler(ICatalogServiceContext context, IMapper mapper, ISpecFactory<Book> specFactory)
         {
             _context = context;
             _mapper = mapper;
-            _betterFilter = betterFilter;
             _specFactory = specFactory;
         }
 
         public async Task<BookListBySpecDto> Handle(GetBookListBySpecQuery request, CancellationToken cancellationToken)
         {
             var spec = _specFactory.CreateSpecification(request.Title,
-            request.Author,
+            request.AuthorId,
             request.Genre,
             request.TitleSpec,
             request.AuthorSpec,

@@ -25,7 +25,7 @@ namespace OrderingService.Domain.Aggregates.OrderAggregate
         public DateTimeOffset OrderDate { get; private set; }
         public DateTimeOffset PlannedReturnDate { get; private set; }
         public DateTimeOffset ActualReturnDate { get; private set; }
-        public string BookTitle { get; private set; }
+        public string BookTittle { get; private set; }
         public string BookAuthor { get; private set; }
         public OrderStatus OrderStatus { get; private set; }
         public string Comment {  get; private set; }         
@@ -34,7 +34,7 @@ namespace OrderingService.Domain.Aggregates.OrderAggregate
             Guid renterId,
             DateTimeOffset orderDate,
             DateTimeOffset plannedReturnDate,           
-            string bookTitle,
+            string bookTittle,
             string bookAuthor,
             string comment)
         {
@@ -42,7 +42,7 @@ namespace OrderingService.Domain.Aggregates.OrderAggregate
             RenterId = renterId;
             OrderDate = orderDate;
             PlannedReturnDate = plannedReturnDate;   
-            BookTitle = bookTitle;
+            BookTittle = bookTittle;
             BookAuthor = bookAuthor;
             OrderStatus = 0;
             Comment = comment;           

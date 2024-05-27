@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using CatalogService.Application.Commands.UpdateBook;
 using CatalogService.Application.Common.Mappings;
-using CatalogService.Domain.Aggregates;
+using CatalogService.Domain.Aggregates.BookAggregate;
 using System.ComponentModel.DataAnnotations;
 
 namespace CatalogService.WebApi.Models

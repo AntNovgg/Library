@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using CatalogService.Application.Common.Exceptions;
 using CatalogService.Application.Common.Interfaces;
-using CatalogService.Domain.Aggregates;
+using CatalogService.Domain.Aggregates.BookAggregate;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;

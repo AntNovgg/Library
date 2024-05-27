@@ -7,7 +7,7 @@ using AutoMapper;
 using CatalogService.Application.Commands.UpdateBook;
 using CatalogService.Application.Commands.DeleteBook;
 using CatalogService.Application.Queries.GetBookListBySpec;
-using CatalogService.Domain.Aggregates;
+using CatalogService.Domain.Aggregates.BookAggregate;
 
 namespace CatalogService.WebApi.Controllers
 {
@@ -50,7 +50,7 @@ namespace CatalogService.WebApi.Controllers
         [HttpGet("filtered")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<BookLookupBySpecDto>> GetAllFiltered(string? title,
-            string? author,
+            Guid authorId,
             Genre genre,
             bool titleSpec,
             bool authorSpec,
@@ -59,7 +59,7 @@ namespace CatalogService.WebApi.Controllers
         {
             var query = new GetBookListBySpecQuery(
                 title,
-                author,
+                authorId,
                 genre,
                 titleSpec,
                 authorSpec,
