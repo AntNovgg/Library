@@ -17,9 +17,7 @@ namespace OrderingService.Infrastructure.Configurations
             builder.Property(renter => renter.BookTittle)
                 .IsRequired()
                 .HasMaxLength(250);
-            builder.Property(renter => renter.BookAuthor)
-                .IsRequired()
-                .HasMaxLength(250);
+            builder.OwnsOne(renter => renter.AuthorFullName);
             builder.Property(renter => renter.Comment)
                 .IsRequired()
                 .HasMaxLength(250);

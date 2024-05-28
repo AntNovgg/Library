@@ -17,7 +17,7 @@ namespace OrderingService.Application.Orders.Commands.AddOrder
         public DateTimeOffset OrderDate { get; private set; }
         public DateTimeOffset PlannedReturnDate { get; private set; }
         public string BookTittle { get; private set; }
-        public string BookAuthor { get; private set; }
+        public FullName AuthorFullName { get; private set; }
         public string Comment { get; private set; }
 
     }

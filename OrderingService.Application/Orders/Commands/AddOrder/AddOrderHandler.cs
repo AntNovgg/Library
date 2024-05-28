@@ -32,7 +32,7 @@ namespace OrderingService.Application.Orders.Commands.AddOrder
                 request.OrderDate,
                 request.PlannedReturnDate,
                 request.BookTittle,
-                request.BookAuthor,
+                request.AuthorFullName,
                 request.Comment);
 
                 _orderRepository.Add(order);

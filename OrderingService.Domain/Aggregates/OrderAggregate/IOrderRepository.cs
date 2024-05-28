@@ -13,6 +13,6 @@ namespace OrderingService.Domain.Aggregates.OrderAggregate
 
         void Update(Order order);
 
-        Task<Order> GetAsync(int orderId);
+        Task<Order> GetAsync(Guid orderId);
     }
 }

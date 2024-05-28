@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using OrderingService.Application.Orders.Commands.AddOrder;
+using OrderingService.Application.Orders.Queries.GetOrderDetails;
 using OrderingService.WebApi.Models;
 
 namespace OrderingService.WebApi.Controllers
@@ -44,6 +45,27 @@ namespace OrderingService.WebApi.Controllers
             var orderId = await Mediator.Send(command);
 
             return Ok(orderId);
+        }
+        /// <summary>
+        /// Gets the order by id
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        /// GET /order/D4837E56-F064-450A-84E6-983352B2E9C1
+        /// </remarks>
+        /// <param name="id">Order id (guid)</param>
+        /// <returns>Returns OrderDetailsDto</returns>
+        /// <response code="200">Success</response>        
+        [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<OrderDetailsDto>> Get(Guid id)
+        {
+            var query = new GetOrderDetailsQuery
+            {                
+                Id = id
+            };
+            var response = await Mediator.Send(query);
+            return Ok(response);
         }
     }
 }

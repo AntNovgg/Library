@@ -23,7 +23,7 @@ namespace OrderingService.Infrastructure.Repositories
 
         }
 
-        public async Task<Order> GetAsync(int orderId)
+        public async Task<Order> GetAsync(Guid orderId)
         {
             var order = await _context.Orders.FindAsync(orderId);
 

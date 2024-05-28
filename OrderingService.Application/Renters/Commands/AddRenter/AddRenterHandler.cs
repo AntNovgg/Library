@@ -1,8 +1,5 @@
 ﻿using MassTransit.Transports;
 using MediatR;
-using OrderingService.Application.Commands.AddOrder;
-using OrderingService.Application.Common.Interfaces;
-using OrderingService.Domain.Aggregates.OrderAggregate;
 using OrderingService.Domain.Aggregates.RenterAggregate;
 using System;
 using System.Collections.Generic;
