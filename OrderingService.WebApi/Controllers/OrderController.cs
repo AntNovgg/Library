@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using OrderingService.Application.Orders.Commands.AddOrder;
 using OrderingService.Application.Orders.Queries.GetOrderDetails;
+using OrderingService.Application.Orders.Queries.GetOrderList;
 using OrderingService.WebApi.Models;
 
 namespace OrderingService.WebApi.Controllers
@@ -15,6 +16,24 @@ namespace OrderingService.WebApi.Controllers
         public OrderController(IMapper mapper)
         {
             _mapper = mapper;
+        }
+
+        /// <summary>
+        /// Gets the list of orders
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        /// GET /order
+        /// </remarks>
+        /// <returns>Returns OrderListDto</returns>
+        /// <response code="200">Success</response>        
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<OrderListDto>> GetAll()
+        {
+            var query = new GetOrderListQuery { };
+            var response = await Mediator.Send(query);
+            return Ok(response);
         }
 
         /// <summary>

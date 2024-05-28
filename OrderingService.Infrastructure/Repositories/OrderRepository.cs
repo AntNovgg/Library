@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CatalogService.Domain.Aggregates.BookAggregate;
+using Microsoft.EntityFrameworkCore;
 using OrderingService.Domain.Aggregates.OrderAggregate;
 using OrderingService.Domain.Seeds;
 using System;
@@ -29,7 +30,10 @@ namespace OrderingService.Infrastructure.Repositories
 
             return order;
         }
-
+        public async Task<IEnumerable<Order>> ListAllAsync()
+        {
+            return await _context.Orders.ToListAsync();
+        }
         public void Update(Order order)
         {
             _context.Entry(order).State = EntityState.Modified;
