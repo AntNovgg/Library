@@ -3,7 +3,7 @@ using MediatR;
 
 
 
-namespace CatalogService.Application.Commands.AddAuthor
+namespace CatalogService.Application.Authors.Commands.AddAuthor
 {
     public class AddAuthorCommand : IRequest<Guid>
     {

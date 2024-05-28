@@ -8,6 +8,6 @@ namespace CatalogService.Application.Books.Queries.GetBookListBySpec
 {
     public class BookListBySpecDto
     {
-        public IList<BookLookupBySpecDto> Books { get; set; }
+        public IEnumerable<BookLookupBySpecDto> Books { get; set; }
     }
 }

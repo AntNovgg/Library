@@ -1,16 +1,13 @@
-﻿using CatalogService.Application.Queries.GetBookDetails;
-using CatalogService.Application.Queries.GetBookList;
-using CatalogService.WebApi.Models;
+﻿using CatalogService.WebApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
-using CatalogService.Application.Commands.DeleteBook;
-using CatalogService.Application.Queries.GetBookListBySpec;
 using CatalogService.Domain.Aggregates.BookAggregate;
 using CatalogService.Application.Books.Commands.AddBook;
 using CatalogService.Application.Books.Commands.UpdateBook;
 using CatalogService.Application.Books.Queries.GetBookDetails;
 using CatalogService.Application.Books.Queries.GetBookList;
 using CatalogService.Application.Books.Queries.GetBookListBySpec;
+using CatalogService.Application.Books.Commands.DeleteBook;
 
 namespace CatalogService.WebApi.Controllers
 {
@@ -136,7 +133,7 @@ namespace CatalogService.WebApi.Controllers
         ///     isavailable:  "updated book availability"
         /// }
         /// </remarks>
-        /// <param name="updateBookModel">UupdateBookModel object</param>
+        /// <param name="updateBookModel">UpdateBookModel object</param>
         /// <returns>Returns NoContent</returns>
         /// <response code="204">Success</response>        
         [HttpPut]

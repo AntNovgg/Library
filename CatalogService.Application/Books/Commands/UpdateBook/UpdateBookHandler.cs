@@ -1,5 +1,6 @@
 ﻿using CatalogService.Application.Common.Interfaces;
 using CatalogService.Domain.Aggregates;
+using CatalogService.Domain.Aggregates.AuthorAggregate;
 using CatalogService.Domain.Aggregates.BookAggregate;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +25,12 @@ namespace CatalogService.Application.Books.Commands.UpdateBook
             try
             {
                 var entity = await _bookRepository.GetAsync(request.Id);
+                entity.BookUpdate(request.Tittle,
+                request.AuthorId,
+                request.BookGenre,
+                request.IsAvailable,
+                request.BookCondition);
+
                 _bookRepository.Update(entity);
                 await _bookRepository.UnitOfWork.SaveChangesAsync(cancellationToken);
             }
@@ -32,8 +39,6 @@ namespace CatalogService.Application.Books.Commands.UpdateBook
                 var errorMessage = $"{DateTime.Now} - произошла ошибка при выполнении метода {nameof(UpdateBookHandler)} - {ex.Message}";
                 throw new Exception(errorMessage);
             }
-
-
         }
     }
 }

@@ -8,10 +8,14 @@ using MassTransit;
 using CatalogService.Application.Consumers;
 using CatalogService.Application.LinqSpecs.Factory;
 using CatalogService.Domain.Aggregates.BookAggregate;
+using CatalogService.Infrastructure.Repositories;
+using CatalogService.Domain.Aggregates.AuthorAggregate;
 
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<ISpecFactory<Book>, BookSpecFactory>();
+builder.Services.AddScoped<IBookRepository, BookRepository>();
+builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
 builder.Services.AddAutoMapper(config =>
 {
     config.AddProfile(new AssemblyMappingProfile(Assembly.GetExecutingAssembly()));

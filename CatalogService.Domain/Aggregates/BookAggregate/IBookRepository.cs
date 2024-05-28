@@ -1,4 +1,5 @@
 ﻿using CatalogService.Domain.Seeds;
+using LinqSpecs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,8 @@ namespace CatalogService.Domain.Aggregates.BookAggregate
         void Update(Book book);
 
         Task<Book> GetAsync(Guid bookId);
+        Task<IEnumerable<Book>> ListAllAsync();
+        Task<IEnumerable<Book>> ListAll(Specification<Book> spec);
         void Delete(Book book);
 
     }

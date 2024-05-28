@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CatalogService.Application.Queries.GetBookList
+namespace CatalogService.Application.Authors.Queries.GetAuthorList
 {
-    public class GetBookListQuery : IRequest<BookListDto>
+    public class GetAuthorListQuery : IRequest<AuthorListDto>
     {        
     }
 }

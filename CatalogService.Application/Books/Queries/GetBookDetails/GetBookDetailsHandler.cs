@@ -27,7 +27,7 @@ namespace CatalogService.Application.Books.Queries.GetBookDetails
            CancellationToken cancellationToken)
         {
 
-            var entity = _bookRepository.GetAsync(request.Id);
+            var entity = await _bookRepository.GetAsync(request.Id);
 
             if (entity == null)
             {

@@ -8,15 +8,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CatalogService.Application.Commands.AddAuthor
+namespace CatalogService.Application.Authors.Commands.AddAuthor
 {
     public class AddAuthorHandler : IRequestHandler<AddAuthorCommand, Guid>
     {
-        private readonly ICatalogServiceContext _context;
-        public AddAuthorHandler(ICatalogServiceContext context)
+        private readonly IAuthorRepository _authorRepository;
+
+        public AddAuthorHandler(IAuthorRepository authorRepository)
         {
-            _context = context;
+            _authorRepository = authorRepository;
         }
+
         public async Task<Guid> Handle(AddAuthorCommand request, CancellationToken cancellationToken)
         {
             try
@@ -25,11 +27,11 @@ namespace CatalogService.Application.Commands.AddAuthor
                     request.LastName,
                     request.MiddleName);
 
-                Author author = new Author(fullname);
-                _renterRepository.Add(renter);
-                await _renterRepository.UnitOfWork.SaveChangesAsync(cancellationToken);
+                CatalogService.Domain.Aggregates.AuthorAggregate.Author author = new Domain.Aggregates.AuthorAggregate.Author(fullname);
+                _authorRepository.Add(author);
+                await _authorRepository.UnitOfWork.SaveChangesAsync(cancellationToken);
 
-                return renter.Id;
+                return author.Id;
             }
             catch (Exception ex)
             {

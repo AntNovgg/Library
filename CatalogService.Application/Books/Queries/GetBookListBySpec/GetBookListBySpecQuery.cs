@@ -1,6 +1,4 @@
-﻿using CatalogService.Application.LinqSpecs;
-using CatalogService.Application.Queries.GetBookList;
-using CatalogService.Domain.Aggregates.BookAggregate;
+﻿using CatalogService.Domain.Aggregates.BookAggregate;
 using MediatR;
 using System;
 using System.Collections.Generic;

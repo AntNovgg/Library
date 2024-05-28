@@ -1,6 +1,4 @@
-﻿
-using CatalogService.Application.Queries.GetBookListBySpec;
-using CatalogService.Domain.Aggregates.BookAggregate;
+﻿using CatalogService.Domain.Aggregates.BookAggregate;
 using LinqSpecs;
 using System;
 using System.Collections.Generic;

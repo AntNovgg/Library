@@ -24,11 +24,15 @@ namespace CatalogService.Infrastructure.Repositories
 
         }
 
-        public async Task<Author> GetAsync(int authorId)
+        public async Task<Author> GetAsync(Guid authorId)
         {
             var author = await _context.Authors.FindAsync(authorId);
 
             return author;
+        }
+        public async Task<IEnumerable<Author>> ListAllAsync()
+        {
+            return await _context.Authors.ToListAsync();
         }
 
         public void Update(Author author)

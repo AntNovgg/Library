@@ -7,9 +7,9 @@ using MediatR;
 using static CatalogService.Domain.Aggregates.BookAggregate.Book;
 
 
-namespace CatalogService.Application.Commands.DeleteBook
+namespace CatalogService.Application.Authors.Commands.DeleteAuthor
 {
-    public class DeleteBookCommand : IRequest
+    public class DeleteAuthorCommand : IRequest
     {
         public Guid Id { get; set; }
 

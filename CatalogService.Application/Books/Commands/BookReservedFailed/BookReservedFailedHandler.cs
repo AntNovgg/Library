@@ -1,6 +1,4 @@
-﻿using CatalogService.Application.Commands.DeleteBook;
-using CatalogService.Application.Common.Interfaces;
-using Contracts;
+﻿using Contracts;
 using MassTransit;
 using MediatR;
 using System;

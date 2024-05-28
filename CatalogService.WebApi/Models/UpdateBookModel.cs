@@ -9,7 +9,7 @@ namespace CatalogService.WebApi.Models
     public class UpdateBookModel : IMapWith<UpdateBookCommand>
     {
         public Guid Id { get; set; }
-        public string Title { get; set; }        
+        public string Tittle { get; set; }        
         public Guid AuthorId { get; set; }        
         public Genre BookGenre { get; set; }       
         public Condition BookCondition { get; set; }        
@@ -19,8 +19,8 @@ namespace CatalogService.WebApi.Models
             profile.CreateMap<UpdateBookModel, UpdateBookCommand>()
                 .ForMember(bookCommand => bookCommand.Id,
                     opt => opt.MapFrom(bookModel => bookModel.Id))
-                .ForMember(bookCommand => bookCommand.Title,
-                    opt => opt.MapFrom(bookModel => bookModel.Title))
+                .ForMember(bookCommand => bookCommand.Tittle,
+                    opt => opt.MapFrom(bookModel => bookModel.Tittle))
                 .ForMember(bookCommand => bookCommand.AuthorId,
                     opt => opt.MapFrom(bookModel => bookModel.AuthorId))
                 .ForMember(bookCommand => bookCommand.BookGenre,

@@ -13,7 +13,8 @@ namespace CatalogService.Domain.Aggregates.AuthorAggregate
 
         void Update(Author author);
 
-        Task<Author> GetAsync(int authorId);
+        Task<Author> GetAsync(Guid authorId);
+        Task<IEnumerable<Author>> ListAllAsync();
         void Delete(Author author);
     }
 }

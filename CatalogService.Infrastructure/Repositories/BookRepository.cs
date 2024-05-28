@@ -1,5 +1,8 @@
-﻿using CatalogService.Domain.Aggregates.BookAggregate;
+﻿using CatalogService.Application.LinqSpecs;
+using CatalogService.Domain.Aggregates.BookAggregate;
 using CatalogService.Domain.Seeds;
+using LinqSpecs;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -29,7 +32,14 @@ namespace CatalogService.Infrastructure.Repositories
 
             return book;
         }
-
+        public async Task<IEnumerable<Book>> ListAllAsync()
+        {
+            return await _context.Books.ToListAsync();
+        }
+        public async Task<IEnumerable<Book>> ListAll(Specification<Book> spec)
+        {
+            return await _context.Books.Where(spec).ToListAsync();
+        }
         public void Update(Book book)
         {
             _context.Entry(book).State = EntityState.Modified;

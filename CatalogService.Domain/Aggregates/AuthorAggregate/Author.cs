@@ -12,5 +12,17 @@ namespace CatalogService.Domain.Aggregates.AuthorAggregate
     {
         [Required]
         public FullName AuthorFullName { get; private set; }
+
+        public Author(FullName authorFullName)
+        {
+            AuthorFullName = authorFullName;
+        }
+        public Author()
+        {            
+        }
+        public void AuthorUpdate(FullName fullName)
+        {
+            AuthorFullName = fullName;
+        }
     }
 }
