@@ -9,6 +9,7 @@ using OrderingService.Application.Consumers;
 using OrderingService.Domain.Aggregates.OrderAggregate;
 using OrderingService.Infrastructure.Repositories;
 using OrderingService.Domain.Aggregates.RenterAggregate;
+using OrderingService.Application.LinqSpecs.Factory;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +18,7 @@ builder.Services.AddAutoMapper(config =>
     config.AddProfile(new AssemblyMappingProfile(Assembly.GetExecutingAssembly()));
     config.AddProfile(new AssemblyMappingProfile(typeof(IOrderingServiceContext).Assembly));
 });
+builder.Services.AddScoped<ISpecFactory<Order>, OrderSpecFactory>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IRenterRepository, RenterRepository>();
 builder.Services.AddApplication();

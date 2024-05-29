@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using OrderingService.Infrastructure;
@@ -11,9 +12,11 @@ using OrderingService.Infrastructure;
 namespace OrderingService.Infrastructure.Migrations
 {
     [DbContext(typeof(OrderingServiceContext))]
-    partial class OrderingServiceContextModelSnapshot : ModelSnapshot
+    [Migration("20240529061033_remove_ownesone_from_orderconfig_for_authorfullname")]
+    partial class remove_ownesone_from_orderconfig_for_authorfullname
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -94,18 +97,15 @@ namespace OrderingService.Infrastructure.Migrations
 
                             b1.Property<string>("LastName")
                                 .IsRequired()
-                                .HasMaxLength(100)
-                                .HasColumnType("character varying(100)");
+                                .HasColumnType("text");
 
                             b1.Property<string>("MiddleName")
                                 .IsRequired()
-                                .HasMaxLength(100)
-                                .HasColumnType("character varying(100)");
+                                .HasColumnType("text");
 
                             b1.Property<string>("Name")
                                 .IsRequired()
-                                .HasMaxLength(100)
-                                .HasColumnType("character varying(100)");
+                                .HasColumnType("text");
 
                             b1.HasKey("OrderId");
 

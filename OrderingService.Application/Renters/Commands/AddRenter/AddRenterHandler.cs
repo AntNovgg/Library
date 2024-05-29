@@ -1,6 +1,7 @@
 ﻿using MassTransit.Transports;
 using MediatR;
 using OrderingService.Domain.Aggregates.RenterAggregate;
+using OrderingService.Domain.Seeds;
 using System;
 using System.Collections.Generic;
 using System.Linq;

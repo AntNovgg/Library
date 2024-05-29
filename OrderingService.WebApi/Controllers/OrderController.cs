@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using OrderingService.Application.Orders.Commands.AddOrder;
 using OrderingService.Application.Orders.Queries.GetOrderDetails;
 using OrderingService.Application.Orders.Queries.GetOrderList;
+using OrderingService.Application.Orders.Queries.GetOrderListBySpec;
+using OrderingService.Domain.Aggregates.RenterAggregate;
+using OrderingService.Domain.Seeds;
 using OrderingService.WebApi.Models;
 
 namespace OrderingService.WebApi.Controllers
@@ -37,18 +40,60 @@ namespace OrderingService.WebApi.Controllers
         }
 
         /// <summary>
+        /// Gets the list of filtered orders
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        /// GET /order
+        /// </remarks>
+        /// <returns>Returns OrderLookupBySpecDto</returns>
+        /// <response code="200">Success</response>        
+        [HttpGet("filteredorders")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<OrderLookupBySpecDto>> GetAllFiltered(string? bookTittle,
+            string? name,
+            string? lastName,
+            string? middleName,
+            DateTimeOffset plannedDate1,
+            DateTimeOffset plannedDate2,
+            DateTimeOffset orderDate1,
+            DateTimeOffset orderDate2,
+            bool bookTittleSpec,
+            bool bookAuthorSpec,
+            bool plannedReturnDateSpec,
+            bool orderDateSpec)
+        {
+            FullName authorFullName = new FullName(name, lastName, middleName);
+
+            var query = new GetOrderListBySpecQuery(
+                bookTittle,
+                authorFullName,
+                plannedDate1,
+                plannedDate2,
+                orderDate1,
+                orderDate2,
+                bookTittleSpec,
+                bookAuthorSpec,
+                plannedReturnDateSpec,
+                orderDateSpec);
+
+            var response = await Mediator.Send(query);
+            return Ok(response);
+        }
+
+        /// <summary>
         /// Creates the order
         /// </summary>
         /// <remarks>
         /// Sample request:
         /// POST /order
         /// {
-        ///     bookId: "rentered book Id",
+        ///     orderId: "rentered order Id",
         ///     renterId: "renter Id",
         ///     orderdate: "order date",
-        ///     plannedReturnDate: "planned book return date",
-        ///     booktitle:  "rentered book title",
-        ///     bookauthor: "rentered book author",
+        ///     plannedReturnDate: "planned order return date",
+        ///     ordertitle:  "rentered order title",
+        ///     orderauthor: "rentered order author",
         ///     comment: "any order comments"
         /// }
         /// </remarks>

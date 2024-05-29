@@ -2,6 +2,7 @@
 using LinqSpecs;
 using OrderingService.Domain.Aggregates.OrderAggregate;
 using OrderingService.Domain.Aggregates.RenterAggregate;
+using OrderingService.Domain.Seeds;
 using System;
 using System.Collections.Generic;
 using System.Linq;

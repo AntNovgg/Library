@@ -1,4 +1,4 @@
-﻿using CatalogService.Domain.Aggregates.BookAggregate;
+﻿using LinqSpecs;
 using Microsoft.EntityFrameworkCore;
 using OrderingService.Domain.Aggregates.OrderAggregate;
 using OrderingService.Domain.Seeds;
@@ -23,7 +23,6 @@ namespace OrderingService.Infrastructure.Repositories
             return _context.Orders.Add(order).Entity;
 
         }
-
         public async Task<Order> GetAsync(Guid orderId)
         {
             var order = await _context.Orders.FindAsync(orderId);
@@ -33,6 +32,10 @@ namespace OrderingService.Infrastructure.Repositories
         public async Task<IEnumerable<Order>> ListAllAsync()
         {
             return await _context.Orders.ToListAsync();
+        }
+        public async Task<IEnumerable<Order>> ListAll(Specification<Order> spec)
+        {
+            return await _context.Orders.Where(spec).ToListAsync();
         }
         public void Update(Order order)
         {

@@ -1,6 +1,7 @@
 ﻿
 using LinqSpecs;
 using OrderingService.Domain.Aggregates.RenterAggregate;
+using OrderingService.Domain.Seeds;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,13 @@ namespace OrderingService.Application.LinqSpecs.Factory
     {
         Specification<T> CreateSpecification(string? bookTittle,
             FullName authorFullName,
-            DateTime plannedReturnDate,
-            bool BookTittleSpec,
-            bool BookAuthorSpec,
-            bool PlannedReturnDateSpec);
+            DateTimeOffset plannedDate1,
+            DateTimeOffset plannedDate2,
+            DateTimeOffset orderDate1,
+            DateTimeOffset orderDate2,
+            bool bookTittleSpec,
+            bool bookAuthorSpec,
+            bool plannedReturnDateSpec,
+            bool orderDateSpec);
     }
 }

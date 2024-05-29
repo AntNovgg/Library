@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using OrderingService.Application.Common.Mappings;
 using OrderingService.Domain.Aggregates.OrderAggregate;
-using OrderingService.Domain.Aggregates.RenterAggregate;
+using OrderingService.Domain.Seeds;
 using System;
 using System.Collections.Generic;
 using System.Linq;

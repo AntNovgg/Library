@@ -2,7 +2,7 @@
 using OrderingService.Application.Common.Mappings;
 using OrderingService.Application.Orders.Commands.AddOrder;
 using OrderingService.Domain.Aggregates.OrderAggregate;
-using OrderingService.Domain.Aggregates.RenterAggregate;
+using OrderingService.Domain.Seeds;
 
 namespace OrderingService.WebApi.Models
 {

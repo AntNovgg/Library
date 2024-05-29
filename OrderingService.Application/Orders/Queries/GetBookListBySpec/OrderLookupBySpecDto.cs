@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
-using CatalogService.Domain.Aggregates.BookAggregate;
 using OrderingService.Application.Common.Mappings;
+using OrderingService.Application.Orders.Queries.GetOrderDetails;
+using OrderingService.Application.Orders.Queries.GetOrderList;
 using OrderingService.Domain.Aggregates.OrderAggregate;
+using OrderingService.Domain.Aggregates.RenterAggregate;
 using OrderingService.Domain.Seeds;
 using System;
 using System.Collections.Generic;
@@ -9,23 +11,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OrderingService.Application.Orders.Queries.GetOrderDetails
+namespace OrderingService.Application.Orders.Queries.GetOrderListBySpec
 {
-    public class OrderDetailsDto : IMapWith<Order>
+    public class OrderLookupBySpecDto : IMapWith<Order>
     {
-        public Guid Id { get; set; }
-        public Guid RenterId { get; set; }        
-        public DateTimeOffset OrderDate { get; set; }
-        public DateTimeOffset PlannedReturnDate { get; set; }
-        public DateTimeOffset ActualReturnDate { get; set; }
-        public string BookTittle { get; set; }
-        public FullName AuthorFullName { get; set; }
-        public OrderStatus OrderStatus { get; set; }
+        public DateTimeOffset OrderDate { get; private set; }
+        public DateTimeOffset PlannedReturnDate { get; private set; }
+        public DateTimeOffset ActualReturnDate { get; private set; }
+        public string BookTittle { get; private set; }
+        public FullName AuthorFullName { get; private set; }
+        public OrderStatus OrderStatus { get; private set; }
+        public string Comment { get; private set; }
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<Order, OrderDetailsDto>()
-                .ForMember(bookVm => bookVm.RenterId,
-                    opt => opt.MapFrom(book => book.RenterId))
+            profile.CreateMap<Order, OrderLookupBySpecDto>()
+                .ForMember(bookVm => bookVm.Comment,
+                    opt => opt.MapFrom(book => book.Comment))
                 .ForMember(bookVm => bookVm.OrderDate,
                     opt => opt.MapFrom(book => book.OrderDate))
                 .ForMember(bookVm => bookVm.PlannedReturnDate,
@@ -39,6 +40,6 @@ namespace OrderingService.Application.Orders.Queries.GetOrderDetails
                 .ForMember(bookVm => bookVm.OrderStatus,
                     opt => opt.MapFrom(book => book.OrderStatus));
         }
-
     }
+
 }

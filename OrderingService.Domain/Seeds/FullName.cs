@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using OrderingService.Domain.Seeds;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
@@ -9,7 +8,7 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OrderingService.Domain.Aggregates.RenterAggregate
+namespace OrderingService.Domain.Seeds
 {
     [Owned]
     public class FullName : ValueObject
@@ -33,7 +32,7 @@ namespace OrderingService.Domain.Aggregates.RenterAggregate
             yield return Name;
             yield return LastName;
             yield return MiddleName;
-            
+
         }
     }
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using LinqSpecs;
+using Microsoft.EntityFrameworkCore;
 using OrderingService.Domain.Seeds;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace OrderingService.Domain.Aggregates.OrderAggregate
         void Update(Order order);
         Task<Order> GetAsync(Guid orderId);
         Task<IEnumerable<Order>> ListAllAsync();
+        Task<IEnumerable<Order>> ListAll(Specification<Order> spec);
         
     }
 }

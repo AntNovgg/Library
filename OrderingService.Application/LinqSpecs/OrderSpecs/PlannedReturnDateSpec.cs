@@ -11,16 +11,18 @@ namespace OrderingService.Application.LinqSpecs.OrderSpecs
 {
     public class PlannedReturnDateSpec : Specification<Order>
     {
-        public DateTimeOffset PlannedReturnDate { get; set; }
+        public DateTimeOffset PlannedDate1 { get; set; }
+        public DateTimeOffset PlannedDate2 { get; set; }
 
-        public PlannedReturnDateSpec(DateTimeOffset plannedReturnDate)
+        public PlannedReturnDateSpec(DateTimeOffset plannedDate1, DateTimeOffset plannedDate2)
         {
-            PlannedReturnDate = plannedReturnDate;
+            PlannedDate1 = plannedDate1;
+            PlannedDate2 = plannedDate2;
         }
 
         public override Expression<Func<Order, bool>> ToExpression()
         {
-            return order => order.PlannedReturnDate < PlannedReturnDate;
+            return order => PlannedDate1 <= order.PlannedReturnDate.Date && order.PlannedReturnDate.Date <= PlannedDate2;
         }
     }
 }
