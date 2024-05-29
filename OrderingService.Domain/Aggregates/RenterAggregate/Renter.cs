@@ -17,22 +17,7 @@ namespace OrderingService.Domain.Aggregates.RenterAggregate
         [Required]        
         public Address RenterAddress { get; private set; }
         public string Telephone { get; private set; }
-        //protected Renter()
-        //{
-        //    _booksIds = new List<int>();            
-        //}
-
-
-        //public Renter(
-        //    FullName renterFullName,
-        //    Address renterAddress,
-        //    string telephone) /*:this()*/
-        //{            
-        //    RenterFullName = renterFullName;
-        //    RenterAddress = renterAddress;
-        //    Telephone = telephone;
-        //}
-
+        
         public Renter(FullName renterFullName,
             Address renterAddress,
             string telephone) : this(telephone)
@@ -40,10 +25,6 @@ namespace OrderingService.Domain.Aggregates.RenterAggregate
             RenterFullName = renterFullName;
             RenterAddress = renterAddress;
         }
-
-        /// <summary>
-        /// EF constructor
-        /// </summary>
         private Renter(string telephone) : base()
         {
             Telephone = telephone;

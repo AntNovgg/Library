@@ -35,6 +35,8 @@ builder.Services.AddDbContext<OrderingServiceContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("DbConnection"));
 });
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
 builder.Services.AddMassTransit(busConfigurator =>
 {
     busConfigurator.SetKebabCaseEndpointNameFormatter();
@@ -55,6 +57,7 @@ using (var scope = app.Services.CreateScope())
 {
     var service = scope.ServiceProvider;
     var context = service.GetService<OrderingServiceContext>();
+
 
 }
 app.UseSwagger();

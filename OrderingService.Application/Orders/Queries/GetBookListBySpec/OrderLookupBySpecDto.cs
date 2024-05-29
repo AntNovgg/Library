@@ -19,7 +19,7 @@ namespace OrderingService.Application.Orders.Queries.GetOrderListBySpec
         public DateTimeOffset PlannedReturnDate { get; private set; }
         public DateTimeOffset ActualReturnDate { get; private set; }
         public string BookTittle { get; private set; }
-        public FullName AuthorFullName { get; private set; }
+        public FullName AuthorFullName { get; set; }
         public OrderStatus OrderStatus { get; private set; }
         public string Comment { get; private set; }
         public void Mapping(Profile profile)

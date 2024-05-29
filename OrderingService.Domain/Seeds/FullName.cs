@@ -13,10 +13,10 @@ namespace OrderingService.Domain.Seeds
     [Owned]
     public class FullName : ValueObject
     {
-        public string Name { get; private set; }
-        public string LastName { get; private set; }
-        public string MiddleName { get; private set; }
-        private FullName() { }
+        public string Name { get; set; }
+        public string LastName { get; set; }
+        public string MiddleName { get; set; }
+        public FullName() { }
 
         public FullName(string name,
             string lastName,
