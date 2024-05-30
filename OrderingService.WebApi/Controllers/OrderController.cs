@@ -4,6 +4,7 @@ using OrderingService.Application.Orders.Commands.AddOrder;
 using OrderingService.Application.Orders.Queries.GetOrderDetails;
 using OrderingService.Application.Orders.Queries.GetOrderList;
 using OrderingService.Application.Orders.Queries.GetOrderListBySpec;
+using OrderingService.Domain.Aggregates.OrderAggregate;
 using OrderingService.Domain.Aggregates.RenterAggregate;
 using OrderingService.Domain.Seeds;
 using OrderingService.WebApi.Models;
@@ -58,10 +59,12 @@ namespace OrderingService.WebApi.Controllers
             DateTimeOffset plannedDate2,
             DateTimeOffset orderDate1,
             DateTimeOffset orderDate2,
+            OrderStatus orderStatus,
             bool bookTittleSpec,
             bool bookAuthorSpec,
             bool plannedReturnDateSpec,
-            bool orderDateSpec)
+            bool orderDateSpec,
+            bool orderStatusSpec)
         {
             FullName authorFullName = new FullName(name, lastName, middleName);
 
@@ -72,10 +75,12 @@ namespace OrderingService.WebApi.Controllers
                 plannedDate2,
                 orderDate1,
                 orderDate2,
+                orderStatus,
                 bookTittleSpec,
                 bookAuthorSpec,
                 plannedReturnDateSpec,
-                orderDateSpec);
+                orderDateSpec,
+                orderStatusSpec);
 
             var response = await Mediator.Send(query);
             return Ok(response);

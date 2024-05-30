@@ -16,15 +16,19 @@ namespace OrderingService.Application.LinqSpecs.Factory
     public class OrderSpecFactory : ISpecFactory<Order>
     {
         public Specification<Order> CreateSpecification(string? bookTittle,
-            FullName authorFullName,
+            string? name,
+            string? lastName,
+            string? middleName,
             DateTimeOffset plannedDate1,
             DateTimeOffset plannedDate2,
             DateTimeOffset orderDate1,
             DateTimeOffset orderDate2,
+            OrderStatus orderStatus,
             bool bookTittleSpec,
             bool bookAuthorSpec,
             bool plannedReturnDateSpec,
-            bool orderDateSpec)
+            bool orderDateSpec,
+            bool orderStatusSpec)
         {
             Specification<Order> specification = new DefaultSpec();
 
@@ -34,7 +38,7 @@ namespace OrderingService.Application.LinqSpecs.Factory
             }
             if (bookAuthorSpec)
             {
-                specification = specification & new BookAuthorSpec(authorFullName);
+                specification = specification & new BookAuthorSpec(name, lastName, middleName);
             }
             if (plannedReturnDateSpec)
             {
@@ -43,6 +47,10 @@ namespace OrderingService.Application.LinqSpecs.Factory
             if (orderDateSpec)
             {
                 specification = specification & new OrderDateSpec(orderDate1, orderDate2);
+            }
+            if (orderStatusSpec)
+            {
+                specification = specification & new OrderStatusSpec(orderStatus);
             }
             return specification;
         }       

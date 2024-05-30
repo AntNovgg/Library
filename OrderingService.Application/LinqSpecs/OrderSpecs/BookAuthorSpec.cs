@@ -14,16 +14,20 @@ namespace CatalogService.Application.LinqSpecs.OrderSpecs
 {
     public class BookAuthorSpec : Specification<Order>
     {
-        public FullName AuthorFullName { get; set; }
+        public string? Name { get; set; }
+        public string? LastName { get; set; }
+        public string? MiddleName { get; set; }
 
-        public BookAuthorSpec(FullName authorFullName)
+        public BookAuthorSpec(string name, string lastName, string middleName)
         {
-            AuthorFullName = authorFullName;
+            Name = name;
+            LastName = lastName;
+            MiddleName = middleName;
         }
 
         public override Expression<Func<Order, bool>> ToExpression()
         {
-            return t => t.AuthorFullName == AuthorFullName;
+            return t => t.AuthorFullName.Name == Name && t.AuthorFullName.LastName == LastName && t.AuthorFullName.MiddleName == MiddleName;
         }
     }
 }

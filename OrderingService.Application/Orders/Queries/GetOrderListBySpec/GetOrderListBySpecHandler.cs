@@ -29,15 +29,19 @@ namespace OrderingService.Application.Orders.Queries.GetOrderListBySpec
         public async Task<OrderListBySpecDto> Handle(GetOrderListBySpecQuery request, CancellationToken cancellationToken)
         {
             var spec = _specFactory.CreateSpecification(request.BookTittle,
-            request.AuthorFullName,
+            request.AuthorFullName.Name,
+            request.AuthorFullName.LastName,
+            request.AuthorFullName.MiddleName,
             request.PlannedDate1,
             request.PlannedDate2,
             request.OrderDate1,
             request.OrderDate2,
+            request.OrderStatus,
             request.BookTittleSpec,
             request.BookAuthorSpec,
             request.PlannedReturnDateSpec,
-            request.OrderDateSpec);
+            request.OrderDateSpec,
+            request.OrderStatusSpec);
 
             var books = await _bookRepository.ListAll(spec);
             var booksDto = _mapper.Map<IEnumerable<OrderLookupBySpecDto>>(books);            
