@@ -48,7 +48,10 @@ namespace CatalogService.Domain.Aggregates.BookAggregate
         {
             IsAvailable = false;
         }
-
+        public void BookRated(Condition bookCondition)
+        {
+            BookCondition = bookCondition;
+        }
 
 
     }

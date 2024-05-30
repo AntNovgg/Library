@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using OrderingService.Application.Orders.Commands.AddOrder;
+using OrderingService.Application.Orders.Commands.CloseOrder;
 using OrderingService.Application.Orders.Queries.GetOrderDetails;
 using OrderingService.Application.Orders.Queries.GetOrderList;
 using OrderingService.Application.Orders.Queries.GetOrderListBySpec;
@@ -135,6 +136,32 @@ namespace OrderingService.WebApi.Controllers
             };
             var response = await Mediator.Send(query);
             return Ok(response);
+        }
+
+        /// <summary>
+        /// Closes the order
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        /// PUT /order/close
+        /// {
+        ///     "id": "order ID",
+        ///     "orderStatus": "order status",
+        ///     "comment": "comment",
+        ///     "bookCondition": "book condition"
+        /// }
+        /// </remarks>
+        /// <param name="closeOrderModel">CloseOrderModel object</param>
+        /// <returns>Returns NoContent</returns>
+        [HttpPut("close")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> CloseOrder([FromBody] CloseOrderModel closeOrderModel)
+        {
+            var command = _mapper.Map<CloseOrderCommand>(closeOrderModel);
+
+            await Mediator.Send(command);
+
+            return NoContent();
         }
     }
 }

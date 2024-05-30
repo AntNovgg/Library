@@ -65,5 +65,10 @@ namespace OrderingService.Domain.Aggregates.OrderAggregate
         public Order()
         {
         }
+        public void CloseOrder(OrderStatus orderStatus, string comment)
+        { 
+            OrderStatus = orderStatus;
+            Comment = comment;
+        }
     }
 }
