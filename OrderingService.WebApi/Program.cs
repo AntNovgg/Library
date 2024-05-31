@@ -64,7 +64,7 @@ app.UseSwagger();
 app.UseSwaggerUI(config =>
 {
     config.RoutePrefix = string.Empty;
-    config.SwaggerEndpoint("swagger/v1/swagger.json", "ordering API");
+    config.SwaggerEndpoint("swagger/v1/swagger.json", "OrderingService API");
 });
 app.UseStaticFiles();
 

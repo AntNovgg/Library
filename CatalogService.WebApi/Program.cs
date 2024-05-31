@@ -66,7 +66,7 @@ app.UseSwagger();
 app.UseSwaggerUI(config =>
 {
     config.RoutePrefix = string.Empty;
-    config.SwaggerEndpoint("swagger/v1/swagger.json", "books API");
+    config.SwaggerEndpoint("swagger/v1/swagger.json", "CatalogService API");
 });
 app.UseStaticFiles();
 
@@ -74,8 +74,8 @@ app.UseRouting();
 app.UseHttpsRedirection();
 app.MapControllerRoute(
     name: "catalog",
-    pattern: "{controller}/{action=Index}/{id?}");
-app.Map("/", () => Results.Redirect("/api"))
+     pattern: "{controller}/{action=Index}/{id?}");
+app.Map("", () => Results.Redirect("/api"))
     .RequireRateLimiting("fixed");
 
 app.Run();
